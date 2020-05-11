@@ -1,17 +1,3 @@
-// import React from 'react';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-     
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
 import React, {Component} from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
@@ -21,6 +7,8 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Profile from './components/Profile';
 import AuthService from './components/auth/auth-service';
+import Navbar from "./components/Navbar";
+import ProtectedRoute from './components/auth/protected-routes';
 
 class App extends Component {
 
@@ -67,24 +55,48 @@ class App extends Component {
       
       return (
         <div className="App">
+          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Route exact user={this.state.loggedInUser} path='/signup' component={Signup} />
-            <Route exact path='/login' render={(props) => (
-                  <Login getUser={this.getTheUser} {...props} />)}/>
-            <Route exact path='/profile' render={(props) => (
-                  <Profile getUser={this.getTheUser} {...props}/>)}/>
+            
+            <Route 
+              exact 
+              path='/signup'  
+              render={(props) => <Signup getUser={this.getTheUser} {...props} /> }
+
+              />
+            
+            <Route 
+              exact 
+              path='/login' 
+              render={(props) => <Login getUser={this.getTheUser} {...props} /> } 
+              /> 
+
+            <ProtectedRoute exact 
+              path='/profile' 
+              render={(props) => 
+                  <Profile getUser={this.getTheUser} {...props}/>}
+
+            />
             </Switch>
         </div>
       );
     } else {
       return (
         <div className="App">
+          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact user={this.state.loggedInUser} path='/signup' component={Signup} />
-            <Route exact path='/login' render={(props) => (
-              <Login getUser={this.getTheUser} {...props} />)} />
+            <Route 
+              exact  
+              path='/signup' 
+              render={(props) => <Signup getUser={this.getTheUser} {...props} />} />
+
+            <Route 
+              exact 
+              path='/login' 
+              render={(props) => <Login getUser={this.getTheUser} {...props} />} 
+              />
             <Route exact path='/profile' render={(props) => (
               <Profile getUser={this.getTheUser} {...props} />)} />
           </Switch>

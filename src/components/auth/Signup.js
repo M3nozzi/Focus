@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import AuthService from './auth-service';
+import { Link } from 'react-router-dom';
+
 
 class Signup extends  Component{
 
@@ -46,7 +47,8 @@ class Signup extends  Component{
             this.props.history.push("/profile");
           })
           .catch((error) => {
-            const { message } = error.response.data;
+            console.log(error)
+            const { message } = error.response.data;  
             message.includes("password")
               ? this.setState({
                   errorMsgPassword: message,
@@ -68,7 +70,7 @@ class Signup extends  Component{
         return(
             <div>
 
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleFormSubmit}>
                 <div className="field">
                     <label className="label">Username</label>
                     <div className="control">
