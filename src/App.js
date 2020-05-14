@@ -134,8 +134,7 @@ export default App;
 // import Watch from "./components/Watch";
 // import { gapi } from 'gapi-script';
 
-// const CLIENT_ID ="467436525173-hj2324vt1u5po1c1idnh25k45lq3uth8.apps.googleusercontent.com";
-// const API_KEY ="nPTJ4iOh3skXmnqMihcGFPt5";
+
 // //const YOUTUBE_DISCOVERY_URI = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
 
 // function App() {
