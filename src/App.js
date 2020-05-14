@@ -23,7 +23,7 @@ class App extends Component {
   }
 
     componentDidMount() {
-        console.log("----->", this.props);
+        // console.log("----->", this.props);
     let query = queryString.parse(this.props.location.search);
     if (query.token) {
       window.localStorage.setItem("jwt", query.token);

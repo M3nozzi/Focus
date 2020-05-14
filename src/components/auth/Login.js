@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
+import Button from '../styles/Button';
 
 class Login extends Component{
 
@@ -111,7 +112,8 @@ class Login extends Component{
               <p className="help is-danger">{this.state.errorMsgPassword}</p>
             )}
           </div>
-          <input className="button" type="submit" value="Login" />
+          {/* <input className="button" type="submit" value="Login" /> */}
+          <Button primary>LOGIN</Button>
         </form>
         <p>
           Don't have an account?

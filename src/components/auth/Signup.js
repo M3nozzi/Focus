@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
-
+import Button from "../styles/Button";
 class Signup extends  Component{
 
     constructor(props){
@@ -115,7 +115,8 @@ class Signup extends  Component{
                     </div>
                 </div>
 
-                <input className="button" type="submit" value="Create the Account" />
+                    {/* <input className="button" type="submit" value="Create the Account" /> */}
+                    <Button primary>SIGN UP</Button>
             </form>
             <p>
                 Already have account?
