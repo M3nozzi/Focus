@@ -8,9 +8,9 @@ class AuthService {
     });
   }
 
-  signup(username, password, campus, course) {
+  signup(email, password, name) {
     return this.service
-      .post("/signup", { username, password, campus, course })
+      .post("/signup", { email, password, name })
       .then((response) => response.data);
   }
 
@@ -27,6 +27,9 @@ class AuthService {
   logout() {
     return this.service.get("/logout").then((response) => response.data);
   }
+
+
+
 }
 
 export default AuthService;

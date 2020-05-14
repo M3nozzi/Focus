@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-
+import GoogleAuth from './GoogleAuth';
 
 class Signup extends  Component{
 
@@ -9,10 +9,9 @@ class Signup extends  Component{
         super(props);
 
         this.state = {
-            username:"",
+            email:"",
             password:"",
-            campus: "",
-            course: "",
+            name: "",
             errorMsgUsername: null,
             errorMsgPassword: null,
         }
@@ -26,19 +25,17 @@ class Signup extends  Component{
 
     handleFormSubmit(event) {
         event.preventDefault();
-        const username = this.state.username;
+        const email = this.state.email;
         const password = this.state.password;
-        const campus = this.state.campus;
-        const course = this.state.course;
+        const name = this.state.name;
 
         this.service
-          .signup(username, password, campus, course)
+          .signup(email, password, name)
           .then((response) => {
             this.setState({
-              username: "",
+              email: "",
               password: "",
-              campus: "",
-              course: "",
+              name: "",
               errorMsgUsername: null,
               errorMsgPassword: null,
             });
@@ -69,17 +66,20 @@ class Signup extends  Component{
     render() {
         return(
             <div>
-
+            <div className="social-container">
+            <GoogleAuth />
+                </div>
+                <p>or</p>
                 <form onSubmit={this.handleFormSubmit}>
                 <div className="field">
-                    <label className="label">Username</label>
+                    <label className="label">Email</label>
                     <div className="control">
                     <input 
                         className="input" 
                         type="text" 
-                        name="username"
-                        value={this.state.username} 
-                        placeholder="e.g Alex Smith" 
+                        name="email"
+                        value={this.state.email} 
+                        placeholder="jon.snow@got.com" 
                         onChange={this.handleChange}
                         />
                     </div>
@@ -100,37 +100,27 @@ class Signup extends  Component{
                 </div>
 
                 <div className="field">
-                    <label className="label">Campus</label>
+                    <label className="label">Name</label>
                     <div className="control">
                     <input 
                         className="input" 
                         type="text" 
-                        name="campus"
-                        value={this.state.campus}
-                        placeholder="Sao Paulo or Madrid or  Barcelona or Miami or Parisor Berlin or Amsterdam or Mexico or Lisbon" 
+                        name="name"
+                        value={this.state.name}
+                        placeholder="Jon Snow" 
                         onChange={this.handleChange}
                         />
                     </div>
                 </div>
 
-                <div className="field">
-                    <label className="label">Course</label>
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="course"
-                        value={this.state.course} 
-                        placeholder="WebDev or UX/UI or Data Analytics" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
                 <input className="button" type="submit" value="Create the Account" />
             </form>
             <p>
                 Already have account?
                 <Link to={"/login"}> Login</Link>
+                <br/>
+                 Go Back
+                <Link to={"/"}> Home</Link>
             </p>
             </div>
         );

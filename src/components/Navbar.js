@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../components/auth/auth-service';
 
+
+
 class Navbar extends Component {
   constructor(props){
     super(props);
@@ -27,7 +29,7 @@ class Navbar extends Component {
       return(
         <nav className="nav-style">
           <ul>
-            <li>Welcome, {this.state.loggedInUser.username}</li>
+            <li>Welcome, {this.state.loggedInUser.name}</li>
             <li>
               <Link to='/projects' style={{ textDecoration: 'none' }}>Projects</Link>
             </li>
@@ -42,11 +44,13 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-        <nav className="nav-style">
-            <ul>
-                <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-                <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-          </ul>
+              <nav className="nav-style">
+           
+                <ul>
+                    <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
+    
+                </ul>
+            
         </nav>
         </div>
       )

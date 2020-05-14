@@ -10,8 +10,7 @@ class Login extends Component{
         this.state = {
             username: "",
             password: "",
-            campus: "",
-            course: "",
+  
             errorMsgUsername: null,
             errorMsgPassword: null,
         };

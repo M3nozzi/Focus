@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+//request('dotenv').config();
+import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
@@ -9,6 +10,8 @@ import Profile from './components/Profile';
 import AuthService from './components/auth/auth-service';
 import Navbar from "./components/Navbar";
 import ProtectedRoute from './components/auth/protected-routes';
+import queryString from 'query-string';
+import LandingPage from './components/views/LandingPage';
 
 class App extends Component {
 
@@ -17,6 +20,15 @@ class App extends Component {
     this.state = { loggedInUser: null };
     this.service = new AuthService(); 
     this.getTheUser = this.getTheUser.bind(this);
+  }
+
+    componentDidMount() {
+        console.log("----->", this.props);
+    let query = queryString.parse(this.props.location.search);
+    if (query.token) {
+      window.localStorage.setItem("jwt", query.token);
+      this.props.history.push("/");
+   }
   }
 
 
@@ -72,21 +84,23 @@ class App extends Component {
               render={(props) => <Login getUser={this.getTheUser} {...props} /> } 
               /> 
 
-            <ProtectedRoute exact 
+            <ProtectedRoute 
+              exact 
               path='/profile' 
               render={(props) => 
-                  <Profile getUser={this.getTheUser} {...props}/>}
-
-            />
+                  <Profile getUser={this.getTheUser} {...props}/>} 
+              />
             </Switch>
         </div>
       );
     } else {
       return (
         <div className="App">
+
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
           <Switch>
-            <Route exact path='/' component={Home} />
+            {/* <Route exact path='/' component={Home} /> */}
+            <Route exact path='/' component={LandingPage} />
             <Route 
               exact  
               path='/signup' 
@@ -106,3 +120,59 @@ class App extends Component {
   }
 }
 export default App;
+
+
+//const dotenv = request('dotenv');
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+
+// import { Loading } from "./components/tools/Loading";
+
+// import LoginTest from "./components/LoginTest";
+// import Home from "./components/Home";
+// import Watch from "./components/Watch";
+// import { gapi } from 'gapi-script';
+
+// const CLIENT_ID ="467436525173-hj2324vt1u5po1c1idnh25k45lq3uth8.apps.googleusercontent.com";
+// const API_KEY ="nPTJ4iOh3skXmnqMihcGFPt5";
+// //const YOUTUBE_DISCOVERY_URI = "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest";
+
+// function App() {
+//     const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+
+//     return isSignedIn ? (
+//         <Router>
+//             <Switch>
+//                 <Route path="/watch/:id" component={Watch} />
+//                 <Route path="/watch" component={Home} />
+//                 <Redirect from="/" to="/watch" />
+//             </Switch>
+//         </Router>
+//     ) : <LoginTest />;
+// }
+
+// function AppContainer() {
+//     const wasGoogleReady = !!gapi.auth2;
+//     const [isGoogleReady, setGoogleReady] = React.useState(wasGoogleReady);
+
+//     React.useEffect(() =>{
+//         gapi.load('client:auth2', () => {
+//             const authPromise = gapi.auth2.init({
+//                 clientId: CLIENT_ID,
+//             });
+            
+//             gapi.client.setApiKey(API_KEY);
+//             const youtubePromise = gapi.client.load();
+            
+//             Promise.all([authPromise, youtubePromise]).then(() => setGoogleReady(true));
+//         })
+//     }, [isGoogleReady]);
+    
+//     return isGoogleReady ? <App /> : <Loading />;
+// }
+
+
+// ReactDOM.render(<AppContainer />, document.getElementById("root"));
+
+// export default AppContainer;
