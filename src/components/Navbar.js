@@ -44,13 +44,9 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-              <nav className="nav-style">
-           
-                <ul>
-                    <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-    
-                </ul>
-            
+          <nav className="nav-style">
+            <p className="focusNavbar">FOCUS</p>
+              <Link className="login" to='/login' style={{ textDecoration: 'none' }}>Login</Link>
         </nav>
         </div>
       )

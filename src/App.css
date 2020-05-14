@@ -13,11 +13,6 @@ body{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -28,19 +23,30 @@ body{
   background-color:#F97D7D;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.focusNavbar{
+  top: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.26px;
+  color: #FFFFFF;
+  opacity: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.login{
+    color:#FFFFFF;
+    text-align: left;
+    font-size:12px;
+    font-family:'Noto Sans JP', sans-serif;;
+    letter-spacing: 0.3px;
+    opacity: 1;
+    font-weight: 500;
+    text-decoration: none;
+    top: 30px;
+
+}
+
+.login:hover{
+  color:#03DAC6;
 }
 
 @keyframes App-logo-spin {
@@ -51,6 +57,18 @@ body{
     transform: rotate(360deg);
   }
 }
+
+.input{
+  /* top: 290px; */
+  left: 44px;
+  width: 327px;
+  height: 56px;
+  background: #FFFFFF00 0% 0% no-repeat padding-box;
+  border: 1px solid #000000;
+  border-radius: 7px;
+  opacity: 0.3;
+}
+
 
 /*GOOGLE BUTTON */
 a {

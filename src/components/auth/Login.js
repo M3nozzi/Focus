@@ -80,12 +80,13 @@ class Login extends Component{
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">
             <div className="control">
-              <label className="label">Username</label>
+              {/* <label className="label">Username</label> */}
 
               <input
                 className={classNameUsername}
                 type="text"
                 name="username"
+                placeholder="e-mail"
                 value={this.state.username}
                 onChange={this.handleChange}
               />
@@ -96,11 +97,12 @@ class Login extends Component{
           </div>
           <div className="field">
             <div className="control">
-              <label className="label">Password</label>
+              {/* <label className="label">Password</label> */}
               <input
                 className={classNamePassword}
                 type="password"
                 name="password"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.handleChange}
               />

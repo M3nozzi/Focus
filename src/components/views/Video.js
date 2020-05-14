@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 //import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -194,4 +194,4 @@ function UploadVideoPage(props) {
     )
 }
 
-export default UploadVideoPage
+export default Video;

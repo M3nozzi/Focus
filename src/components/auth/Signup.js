@@ -70,44 +70,46 @@ class Signup extends  Component{
             <GoogleAuth />
                 </div>
                 <p>or</p>
+                <br />
+                <p>Sign up with your email address</p>
                 <form onSubmit={this.handleFormSubmit}>
                 <div className="field">
-                    <label className="label">Email</label>
+                    {/* <label className="label">Email</label> */}
                     <div className="control">
                     <input 
                         className="input" 
                         type="text" 
                         name="email"
                         value={this.state.email} 
-                        placeholder="jon.snow@got.com" 
+                        placeholder="e-mail" 
                         onChange={this.handleChange}
                         />
                     </div>
                 </div>
 
                 <div className="field">
-                    <label className="label">Password</label>
+                    {/* <label className="label">Password</label> */}
                     <div className="control">
                     <input 
                         className="input" 
                         type="password" 
                         name="password"
                         value={this.state.password}  
-                        placeholder="*****" 
+                        placeholder="Password" 
                         onChange={this.handleChange}
                         />
                     </div>
                 </div>
 
                 <div className="field">
-                    <label className="label">Name</label>
+                    {/* <label className="label">Name</label> */}
                     <div className="control">
                     <input 
                         className="input" 
                         type="text" 
                         name="name"
                         value={this.state.name}
-                        placeholder="Jon Snow" 
+                        placeholder="What should we call you?" 
                         onChange={this.handleChange}
                         />
                     </div>
