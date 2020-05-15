@@ -1,21 +1,24 @@
-import React, { useEffect, useState} from 'react';
-import {Card, Avatar, Col, Typography, Row} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
 const { Title } = Typography;
 const { Meta } = Card;
 
-function LandingPage() {
+
+function ContentFollowed() {
     
     const [Videos, setVideos] = useState([]);
 
+    let variable = {userFrom: localStorage.getItem('userId') }
+
     useEffect(() => {
-        axios.get('/api/video/getVideos')
+        axios.post('/api/video/getContentFollowed', variable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.videos)
                     setVideos(response.data.videos)
                 } else {
-                    alert('Failed to get Videos')
+                    alert('Failed to get Content FOllowed')
                 }
             })
     }, [])
@@ -49,9 +52,9 @@ function LandingPage() {
 
     return(
         <div style={{width: '85%', margin:'3rem auto'}}>
-            <Title level={2}> Recommended </Title>
+            <Title level={2}> Followed Content </Title>
             <hr/>
-            <Row>
+            <Row gutter={16}>
             {renderCards}
             </Row>
         </div>
@@ -59,4 +62,5 @@ function LandingPage() {
     );
 }
 
-export default LandingPage;
+
+export default ContentFollowed;

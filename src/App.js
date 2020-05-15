@@ -1,4 +1,3 @@
-//request('dotenv').config();
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import './App.css';
@@ -12,6 +11,11 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from './components/auth/protected-routes';
 import queryString from 'query-string';
 import LandingPage from './components/views/LandingPage';
+import VideoDetail from './components/views/VideoDetail';
+import ContentFollowed from './components/views/ContentFollowed';
+import YoutubeConfig from './components/tools/YoutubeConfig';
+import YoutubeVideo from "./components/tools/YoutubeVideo"
+
 
 class App extends Component {
 
@@ -61,6 +65,9 @@ class App extends Component {
     });
   } 
 
+ 
+
+  
   render() {
     this.fetchUser();
     if(this.state.loggedInUser){
@@ -100,11 +107,14 @@ class App extends Component {
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
           <Switch>
             {/* <Route exact path='/' component={Home} /> */}
-            <Route exact path='/' component={LandingPage} />
+            {/* <Route exact path='/' component={LandingPage} /> */}
+            {/* <Route exact path="/" component={YoutubeConfig}/> */}
+            <Route exact path="/" component={YoutubeVideo}/>
             <Route 
               exact  
               path='/signup' 
-              render={(props) => <Signup getUser={this.getTheUser} {...props} />} />
+              render={(props) => <Signup getUser={this.getTheUser} {...props} />}  
+              />
 
             <Route 
               exact 
@@ -113,6 +123,8 @@ class App extends Component {
               />
             <Route exact path='/profile' render={(props) => (
               <Profile getUser={this.getTheUser} {...props} />)} />
+            <Route exact path='/video/:videoId' component={VideoDetail} />
+            <Route exact path='/contentfollowed' component={ContentFollowed} />
           </Switch>
         </div>
       );

@@ -3,7 +3,7 @@ import {Container } from "../styles/Containers";
 import Loader from "react-loader-spinner";
 import Theme from "../../Theme";
 
-export function Loading({wide}) {
+function Loading({wide}) {
     return (
         <Container wide={wide}>
             <Loader
@@ -15,3 +15,5 @@ export function Loading({wide}) {
         </Container>
     )
 }
+
+export default Loading;
