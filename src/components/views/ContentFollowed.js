@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 function ContentFollowed() {
     
-    const [Videos, setVideos] = useState([]);
+    const [Content, setCOntent] = useState([]);
 
     let variable = {userFrom: localStorage.getItem('userId') }
 
@@ -16,7 +16,7 @@ function ContentFollowed() {
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.videos)
-                    setVideos(response.data.videos)
+                    setCOntent(response.data.videos)
                 } else {
                     alert('Failed to get Content FOllowed')
                 }
@@ -24,7 +24,7 @@ function ContentFollowed() {
     }, [])
 
 
-    const renderCards = Videos.map((video, index) => {
+    const renderCards = Content.map((video, index) => {
         
         var minutes = Math.floor(video.duration/60);
         var seconds = Math.floor(video.duration - minutes * 60);

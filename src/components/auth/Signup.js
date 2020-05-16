@@ -3,6 +3,7 @@ import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
 import Button from "../styles/Button";
+
 class Signup extends  Component{
 
     constructor(props){
@@ -41,7 +42,7 @@ class Signup extends  Component{
             });
             console.log(response);
             this.props.getUser(response);
-            this.props.history.push("/profile");
+            this.props.history.push(`/profile/${response._id}`);
           })
           .catch((error) => {
             console.log(error)

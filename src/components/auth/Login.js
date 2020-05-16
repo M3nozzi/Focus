@@ -43,7 +43,7 @@ class Login extends Component{
         if (this.props.location.state) {
           redirectTo = this.props.location.state.from.pathname;
         }
-        this.props.history.push(redirectTo);
+        this.props.history.push(redirectTo + "/" + response._id);
       })
       .catch((error) => {
         const { message } = error.response.data;
@@ -81,7 +81,7 @@ class Login extends Component{
         <form onSubmit={this.handleFormSubmit}>
           <div className="field">
             <div className="control">
-              {/* <label className="label">Username</label> */}
+           
 
               <input
                 className={classNameUsername}
@@ -98,7 +98,7 @@ class Login extends Component{
           </div>
           <div className="field">
             <div className="control">
-              {/* <label className="label">Password</label> */}
+            
               <input
                 className={classNamePassword}
                 type="password"
@@ -112,7 +112,7 @@ class Login extends Component{
               <p className="help is-danger">{this.state.errorMsgPassword}</p>
             )}
           </div>
-          {/* <input className="button" type="submit" value="Login" /> */}
+    
           <Button primary>LOGIN</Button>
         </form>
         <p>

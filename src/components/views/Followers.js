@@ -4,16 +4,15 @@ import axios from 'axios';
 function Followers(props) {
     
     const userTo = props.userTo;
-    const userFrom = props.userFrom;
     const contentFrom = props.contentFrom;
 
     const [FollowerNumber, setFollowerNumber] = useState(0);
     const [Followed, setFollowed] = useState(false);
 
     const onFollowed = () => {
+
         let followersVariables = {
             userTo: userTo,
-            usertFrom: userFrom,
             contentFrom:contentFrom,
         }
         if (Followed) {
@@ -30,7 +29,7 @@ function Followers(props) {
         } else {
             // when we are not subscribed yet
             
-            axios.post('/api/followers/followed', followersVariables)
+            axios.post('/api/followers/follow', followersVariables)
                 .then(response => {
                     if(response.data.success) {
                         setFollowerNumber(FollowerNumber + 1)
@@ -45,7 +44,7 @@ function Followers(props) {
     
     useEffect(() => {
 
-        const followersNumberVariable = { userTo: userTo , userFrom: userFrom, contentFrom: contentFrom };
+        const followersNumberVariable = { userTo: userTo, contentFrom: contentFrom };
 
         axios.post('/api/followers/followersNumber', followersNumberVariable)
             .then(response => {

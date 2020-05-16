@@ -5,15 +5,16 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import Profile from './components/Profile';
+import Profile from './components/views/Profile/Profile';
+import EditProfile from "./components/views/Profile/EditProfile";
 import AuthService from './components/auth/auth-service';
 import Navbar from "./components/Navbar";
 import ProtectedRoute from './components/auth/protected-routes';
 import queryString from 'query-string';
-import LandingPage from './components/views/LandingPage';
+// import LandingPage from './components/views/LandingPage';
 import VideoDetail from './components/views/VideoDetail';
 import ContentFollowed from './components/views/ContentFollowed';
-import YoutubeConfig from './components/tools/YoutubeConfig';
+// import YoutubeConfig from './components/tools/YoutubeConfig';
 import YoutubeVideo from "./components/tools/YoutubeVideo"
 
 
@@ -23,6 +24,7 @@ class App extends Component {
     super(props);
     this.state = { loggedInUser: null };
     this.service = new AuthService(); 
+
     this.getTheUser = this.getTheUser.bind(this);
   }
 
@@ -32,18 +34,18 @@ class App extends Component {
     if (query.token) {
       window.localStorage.setItem("jwt", query.token);
       this.props.history.push("/");
-   }
+    }
   }
 
 
   fetchUser() {
-    // console.log("inside fetchUser");
+    //console.log("inside fetchUser");
     if (this.state.loggedInUser === null) {
       // console.log("NULL inside fetchUser");
       this.service
         .loggedin()
         .then((response) => {
-          // console.log("SUCCESS inside fetchUser");
+          console.log("User", response);
 
           this.setState({
             loggedInUser: response,
@@ -60,42 +62,37 @@ class App extends Component {
   }
 
   getTheUser(userObj) {
+    
+    console.log(userObj);
     this.setState({
       loggedInUser: userObj,
     });
   } 
 
- 
-
-  
   render() {
     this.fetchUser();
     if(this.state.loggedInUser){
       
       return (
         <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
+          <Navbar 
+            userInSession={this.state.loggedInUser} 
+            getUser={this.getTheUser}/>
           <Switch>
-            <Route exact path='/' component={Home}/>
-            
-            <Route 
-              exact 
-              path='/signup'  
-              render={(props) => <Signup getUser={this.getTheUser} {...props} /> }
-
+            <ProtectedRoute 
+              exact path='/profile/:id' 
+              user={this.state.loggedInUser}
+              component={Profile}
               />
-            
+              <ProtectedRoute 
+              exact path='/profile/edit/:id' 
+              user={this.state.loggedInUser}
+              component={EditProfile}
+              />
             <Route 
               exact 
               path='/login' 
-              render={(props) => <Login getUser={this.getTheUser} {...props} /> } 
-              /> 
-
-            <ProtectedRoute 
-              exact 
-              path='/profile' 
-              render={(props) => 
-                  <Profile getUser={this.getTheUser} {...props}/>} 
+              render={(props) => <Login getUser={this.getTheUser} {...props} />} 
               />
             </Switch>
         </div>
@@ -104,12 +101,14 @@ class App extends Component {
       return (
         <div className="App">
 
-          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+          <Navbar 
+            userInSession={this.state.loggedInUser} 
+            getUser={this.getTheUser} />
           <Switch>
-            {/* <Route exact path='/' component={Home} /> */}
+            <Route exact path='/' component={Home} />
             {/* <Route exact path='/' component={LandingPage} /> */}
             {/* <Route exact path="/" component={YoutubeConfig}/> */}
-            <Route exact path="/" component={YoutubeVideo}/>
+            {/* <Route exact path="/" component={YoutubeVideo}/> */}
             <Route 
               exact  
               path='/signup' 
@@ -121,8 +120,8 @@ class App extends Component {
               path='/login' 
               render={(props) => <Login getUser={this.getTheUser} {...props} />} 
               />
-            <Route exact path='/profile' render={(props) => (
-              <Profile getUser={this.getTheUser} {...props} />)} />
+            {/* <Route exact path='/profile' render={(props) => (
+              <Profile getUser={this.getTheUser} {...props} />)} /> */}
             <Route exact path='/video/:videoId' component={VideoDetail} />
             <Route exact path='/contentfollowed' component={ContentFollowed} />
           </Switch>
