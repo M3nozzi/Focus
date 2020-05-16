@@ -23,6 +23,38 @@
   color:#8B8B8B;
   
 }
+.showModal{
+  background-color: #03DAC6;
+  border-radius:6px;
+}
+.ant-modal p{
+  color:#707070;
+  font-family: 'Roboto';
+  font-weight:bold;
+  text-align: center;
+}
+.ant-modal button.ant-btn.ant-btn-primary{
+  background-color: #03DAC6;
+  border-radius:6px;
+  border:none;
+}
+
+.ant-modal button.ant-btn.ant-btn-primary:hover{
+  background-color: #03DAC6;
+  border-radius:6px;
+  border:none;
+  color:white;
+
+ }
+
+ .ant-modal button.ant-btn{
+ border-radius: 6px;
+  
+}
+.ant-modal button.ant-btn:hover{
+  border-color: #F97D7D;
+  color:#F97D7D;
+}
 
 .iconFocus{
   color:#F97D7D;

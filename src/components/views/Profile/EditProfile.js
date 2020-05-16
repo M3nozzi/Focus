@@ -11,7 +11,8 @@ import Avatar from '@material-ui/core/Avatar';
 import FileUpload from '@material-ui/icons/AddPhotoAlternate';
 import { makeStyles } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
-import AuthService from '../../auth/auth-service';
+// import AuthService from '../../auth/auth-service';
+import ModalSuccess from "../../views/ModalSuccess";
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -60,29 +61,6 @@ const useStyles = makeStyles(theme => ({
       error: '',
       id: props.loggedInUser._id,
     })
-
-
-    // const jwt = auth.isAuthenticated()
-    //const isLoggedIn = autloggedin();
-  
-    // useEffect(() => {
-    //   const abortController = new AbortController()
-    //   const signal = abortController.signal
-  
-    //   read({
-    //     userId: match.params.userId
-    //   }, {t: jwt.token}, signal).then((data) => {
-    //     if (data & data.error) {
-    //       setValues({...values, error: data.error})
-    //     } else {
-    //       setValues({...values, id: data._id, name: data.name})
-    //     }
-    //   })
-    //   return function cleanup(){
-    //     abortController.abort()
-    //   }
-  
-    // }, [match.params.userId])
     
     const clickSubmit = () => {
 
@@ -142,7 +120,8 @@ const useStyles = makeStyles(theme => ({
             }
           </CardContent>
           <CardActions>
-            <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+                  <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+                  <ModalSuccess/>
           </CardActions>
         </Card>
       )
