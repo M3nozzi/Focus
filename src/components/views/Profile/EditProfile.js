@@ -53,7 +53,8 @@ const useStyles = makeStyles(theme => ({
   
   export default function EditProfile(props) {
     console.log("Props do EDIT USER: ", props);
-    const classes = useStyles()
+    const classes = useStyles();
+
     const [values, setValues] = useState({
       name: props.loggedInUser.name,
       path: props.loggedInUser.path,
@@ -64,37 +65,61 @@ const useStyles = makeStyles(theme => ({
     
     const clickSubmit = () => {
 
-      let userData = new FormData();
-      values.name && userData.append('name', values.name)
-      values.password && userData.append('password', values.password)
-      values.path && userData.append('path', values.path)
+      // const userData = new FormData();
+      // console.log(values.name && userData.append('name', values.name));
+      // values.password && userData.append('passoword', values.password);
+      // values.path && userData.append('path', values.path)
       
-      console.log("VALUES DO EDIT PROFILE", values);
-
-      console.log("USER DATA ONSUBMIT", userData);
+      //console.log("VALUES DO EDIT PROFILE", values);
+      // console.log("USER DATA ONSUBMIT", userData);
+      // console.log("INSIDE SUBMIT VALUES ID: ", values.id);
 
       axios.put(`http://localhost:5000/api/profile/${values.id}`,
         {
-          id:values.id, userData
-        }, {withCredentials:true}
-        ).then(()=> {
+           name:values.name,
+           password: values.password,
+           path: values.path
+
+        }, {withCredentials:true}, {new:true}
+        ).then( response => {
+           console.log("RESPONSE DO PUT",response);
+          // props.getUser(response.config.data);
           props.history.push('/profile' + '/' + values.id)
         })
         
     }
 
+    const handleFileChange = event => {
+      const uploadData = new FormData();
+      uploadData.append('path', event.target.files[0]);
+      
+      axios
+        .post("http://localhost:5000/api/upload", uploadData)
+        
+        .then(response => { 
+          console.log(response)
+          
+          setValues({...values, path:response.data.secure_url});
+          
+          console.log("VALUE DOT PATH DEPOIS DA FOTO", values.path);
+        })
+        .catch(error => console.log(error));
+        
+    }
 
     const handleChange = name => event => {
       const value = name === 'path'
-        ? event.target.files[0]
-        : event.target.value
+        ? (event.target.files[0]
+        ): event.target.value
     
       setValues({...values, [name]: value })
     }
+
+    // const handleFile = values
   
-      if (values.redirectToProfile) {
-        return (<Redirect to={'/user/' + values.id}/>)
-      }
+    //   if (values.redirectToProfile) {
+    //     return (<Redirect to={'/user/' + values.id}/>)
+    //   }
       return (
         <Card className={classes.card}>
           <CardContent>
@@ -102,15 +127,17 @@ const useStyles = makeStyles(theme => ({
               Edit Profile
             </Typography>
                   <Avatar src={values.path} className={classes.bigAvatar}/><br/>
-            <input accept="image/*" onChange={handleChange('photo')} className={classes.input} id="icon-button-file" type="file" />
+            <input accept="image/*" onChange={handleFileChange} className={classes.input} id="icon-button-file" type="file" />
             <label htmlFor="icon-button-file">
               <Button variant="contained" color="default" component="span">
                 Upload
                 <FileUpload/>
               </Button>
             </label> <span className={classes.filename}>{values.path ? values.path.name : ''}</span><br/>
+
             <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
                   <br />
+            
             <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
             <br/> {
               values.error && (<Typography component="p" color="error">

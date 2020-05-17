@@ -16,6 +16,10 @@ import VideoDetail from './components/views/VideoDetail';
 import ContentFollowed from './components/views/ContentFollowed';
 // import YoutubeConfig from './components/tools/YoutubeConfig';
 import YoutubeVideo from "./components/tools/YoutubeVideo"
+// import UserForm from "./components/ComponentsSignupOk/UserForm";
+import Main from "./components/Cards/Main";
+
+
 
 
 class App extends Component {
@@ -87,7 +91,13 @@ class App extends Component {
               <ProtectedRoute 
               exact path='/profile/edit/:id' 
               user={this.state.loggedInUser}
+              getUser={this.getTheUser}
               component={EditProfile}
+              />
+            <ProtectedRoute 
+              exact path='/contents' 
+              user={this.state.loggedInUser}
+              component={Main}
               />
             <Route 
               exact 

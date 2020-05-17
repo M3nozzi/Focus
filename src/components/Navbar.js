@@ -55,9 +55,12 @@ class Navbar extends Component {
                 <Link to={"/profile/" + this.state.loggedInUser._id}>
                   <Button>My Profile</Button>
                 </Link>
-                <Link to='/'>
+              <Link to={"/contents"}>
+                  <Button>Contents</Button>
+              </Link>
+              <Link to='/'>
                         <button onClick={() => this.logoutUser()}>Logout</button>
-                  </Link>
+              </Link>
               </span>
 
           </Toolbar>
