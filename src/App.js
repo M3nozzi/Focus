@@ -14,10 +14,8 @@ import queryString from 'query-string';
 // import LandingPage from './components/views/LandingPage';
 import VideoDetail from './components/views/VideoDetail';
 import ContentFollowed from './components/views/ContentFollowed';
-// import YoutubeConfig from './components/tools/YoutubeConfig';
-import YoutubeVideo from "./components/tools/YoutubeVideo"
-// import UserForm from "./components/ComponentsSignupOk/UserForm";
-import Main from "./components/Cards/Main";
+import Main from "./components/Content/Main";
+import WatchX from './components/WatchVideos/WatchX';
 
 
 
@@ -27,13 +25,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { loggedInUser: null };
-    this.service = new AuthService(); 
+    this.service = new AuthService();
 
     this.getTheUser = this.getTheUser.bind(this);
   }
 
-    componentDidMount() {
-        // console.log("----->", this.props);
+  componentDidMount() {
+    // console.log("----->", this.props);
     let query = queryString.parse(this.props.location.search);
     if (query.token) {
       window.localStorage.setItem("jwt", query.token);
@@ -49,7 +47,7 @@ class App extends Component {
       this.service
         .loggedin()
         .then((response) => {
-          console.log("User", response);
+          console.log("User Home", response);
 
           this.setState({
             loggedInUser: response,
@@ -71,74 +69,94 @@ class App extends Component {
     this.setState({
       loggedInUser: userObj,
     });
-  } 
+  }
 
   render() {
     this.fetchUser();
-    if(this.state.loggedInUser){
+   
       
-      return (
-        <div className="App">
-          <Navbar 
-            userInSession={this.state.loggedInUser} 
-            getUser={this.getTheUser}/>
-          <Switch>
-            <ProtectedRoute 
-              exact path='/profile/:id' 
-              user={this.state.loggedInUser}
-              component={Profile}
+    return (
+    <div>
+      {
+        this.state.loggedInUser ? (
+          <div className="App">
+            <Navbar
+              userInSession={this.state.loggedInUser}
+              getUser={this.getTheUser} />
+            <Switch>
+              <ProtectedRoute
+                exact path='/profile/:id'
+                user={this.state.loggedInUser}
+                getUser={this.getTheUser}
+                component={Profile}
               />
-              <ProtectedRoute 
-              exact path='/profile/edit/:id' 
-              user={this.state.loggedInUser}
-              getUser={this.getTheUser}
-              component={EditProfile}
+              <ProtectedRoute
+                exact path='/profile/edit/:id'
+                user={this.state.loggedInUser}
+                getUser={this.getTheUser}
+                component={EditProfile}
               />
-            <ProtectedRoute 
-              exact path='/contents' 
-              user={this.state.loggedInUser}
-              component={Main}
+              <ProtectedRoute
+                exact path='/main'
+                user={this.state.loggedInUser}
+                getUser={this.getTheUser}
+                component={Main}
+                />
+              <ProtectedRoute
+                exact path='/contents/:id'
+                user={this.state.loggedInUser}
+                getUser={this.getTheUser}
+                component={ContentFollowed}
               />
-            <Route 
-              exact 
-              path='/login' 
-              render={(props) => <Login getUser={this.getTheUser} {...props} />} 
+              <ProtectedRoute
+                exact path='/videos/:id'
+                user={this.state.loggedInUser}
+                getUser={this.getTheUser}
+                component={WatchX}
+              />
+              <Route
+                exact
+                path='/login'
+                render={(props) => <Login getUser={this.getTheUser} {...props} />}
               />
             </Switch>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
+          </div>
+        ) :
+          (
+            <div className="App">
 
-          <Navbar 
-            userInSession={this.state.loggedInUser} 
-            getUser={this.getTheUser} />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            {/* <Route exact path='/' component={LandingPage} /> */}
-            {/* <Route exact path="/" component={YoutubeConfig}/> */}
-            {/* <Route exact path="/" component={YoutubeVideo}/> */}
-            <Route 
-              exact  
-              path='/signup' 
-              render={(props) => <Signup getUser={this.getTheUser} {...props} />}  
-              />
+              <Navbar
+                userInSession={this.state.loggedInUser}
+                getUser={this.getTheUser} />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                {/* <Route exact path='/' component={LandingPage} /> */}
+                {/* <Route exact path="/" component={YoutubeConfig}/> */}
+                {/* <Route exact path="/" component={YoutubeVideo}/> */}
+                <Route
+                  exact
+                  path='/signup'
+                  render={(props) => <Signup getUser={this.getTheUser} {...props} />}
+                />
 
-            <Route 
-              exact 
-              path='/login' 
-              render={(props) => <Login getUser={this.getTheUser} {...props} />} 
-              />
-            {/* <Route exact path='/profile' render={(props) => (
+                <Route
+                  exact
+                  path='/login'
+                  render={(props) => <Login getUser={this.getTheUser} {...props} />}
+                />
+                {/* <Route exact path='/profile' render={(props) => (
               <Profile getUser={this.getTheUser} {...props} />)} /> */}
-            <Route exact path='/video/:videoId' component={VideoDetail} />
-            <Route exact path='/contentfollowed' component={ContentFollowed} />
-          </Switch>
-        </div>
-      );
-    }
+                <Route exact path='/video/:videoId' component={VideoDetail} />
+                <Route exact path='/contentfollowed' component={ContentFollowed} />
+              </Switch>
+            </div>
+          )
+   
+      }
+      </div>
+    )
   }
+  
 }
 export default App;
 

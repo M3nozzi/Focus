@@ -6,7 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
   root: {
@@ -49,20 +50,18 @@ class Navbar extends Component {
                 FOCUS
               </Typography>
                 <span>
-                <Link to="/"><IconButton aria-label="Home">
+                <Link to="/main"><IconButton aria-label="Home">
                     <HomeIcon/>
                 </IconButton></Link>
                 <Link to={"/profile/" + this.state.loggedInUser._id}>
-                  <Button>My Profile</Button>
-                </Link>
-              <Link to={"/contents"}>
-                  <Button>Contents</Button>
+                {/* <Button>My Profile</Button> */}
+                <Avatar src={this.state.loggedInUser.path} />
               </Link>
-              <Link to='/'>
+                    <Link to='/'>
                         <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
               </span>
-
+             
           </Toolbar>
         </AppBar>
       )

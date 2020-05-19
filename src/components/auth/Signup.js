@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
-import Button from "../styles/Button";
+
 
 class Signup extends  Component{
 
@@ -26,12 +26,12 @@ class Signup extends  Component{
 
     handleFormSubmit(event) {
         event.preventDefault();
-        const email = this.state.email;
+        const username = this.state.email;
         const password = this.state.password;
         const name = this.state.name;
 
         this.service
-          .signup(email, password, name)
+          .signup(username, password, name)
           .then((response) => {
             this.setState({
               email: "",
@@ -65,6 +65,18 @@ class Signup extends  Component{
       }
 
     render() {
+
+        const { errorMsgUsername, errorMsgPassword } = this.state;
+
+        const inputClassName = "input is-small";
+
+        const classNameUsername = errorMsgUsername
+            ? `${inputClassName} is-danger`
+            : inputClassName;
+        const classNamePassword = errorMsgPassword
+            ? `${inputClassName} is-danger`
+            : inputClassName;
+
         return(
             <div>
             <div className="social-container">
@@ -75,7 +87,6 @@ class Signup extends  Component{
                 <p>Sign up with your email address</p>
                 <form onSubmit={this.handleFormSubmit}>
                 <div className="field">
-                    {/* <label className="label">Email</label> */}
                     <div className="control">
                     <input 
                         className="input" 
@@ -86,10 +97,12 @@ class Signup extends  Component{
                         onChange={this.handleChange}
                         />
                     </div>
+                    {errorMsgUsername && (
+                        <p className="help is-danger">{this.state.errorMsgUsername}</p>
+                    )}
                 </div>
 
                 <div className="field">
-                    {/* <label className="label">Password</label> */}
                     <div className="control">
                     <input 
                         className="input" 
@@ -103,7 +116,7 @@ class Signup extends  Component{
                 </div>
 
                 <div className="field">
-                    {/* <label className="label">Name</label> */}
+            
                     <div className="control">
                     <input 
                         className="input" 
@@ -114,10 +127,11 @@ class Signup extends  Component{
                         onChange={this.handleChange}
                         />
                     </div>
+                    {errorMsgPassword && (
+                        <p className="help is-danger">{this.state.errorMsgPassword}</p>
+                    )}
                 </div>
-
-                    {/* <input className="button" type="submit" value="Create the Account" /> */}
-                    <Button primary>SIGN UP</Button>
+                    <button className="btnSignup" primary>SIGN UP</button>
             </form>
             <p>
                 Already have account?

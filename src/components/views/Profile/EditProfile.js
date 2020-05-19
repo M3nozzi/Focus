@@ -51,16 +51,16 @@ const useStyles = makeStyles(theme => ({
     }
   }))
   
-  export default function EditProfile(props) {
-    console.log("Props do EDIT USER: ", props);
+export default function EditProfile({ getUser, loggedInUser, history }) {
+    console.log("Props do EDIT USER: ", getUser);
     const classes = useStyles();
 
     const [values, setValues] = useState({
-      name: props.loggedInUser.name,
-      path: props.loggedInUser.path,
+      name: loggedInUser.name,
+      path: loggedInUser.path,
       password: "",
       error: '',
-      id: props.loggedInUser._id,
+      id: loggedInUser._id,
     })
     
     const clickSubmit = () => {
@@ -81,10 +81,11 @@ const useStyles = makeStyles(theme => ({
            path: values.path
 
         }, {withCredentials:true}, {new:true}
-        ).then( response => {
-           console.log("RESPONSE DO PUT",response);
-          // props.getUser(response.config.data);
-          props.history.push('/profile' + '/' + values.id)
+      ).then(response => {
+          getUser(response)
+           console.log("response DO PUT", response,);
+            getUser(response.data);
+          history.push('/profile' + '/' + values.id)
         })
         
     }

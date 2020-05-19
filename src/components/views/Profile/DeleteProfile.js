@@ -16,7 +16,7 @@ class DeleteProfile extends Component {
         super(props);
 
         this.state = { 
-            loggedInUser: this.props.getUser,
+            loggedInUser: this.props.userId,
             open: false, 
         };
 
@@ -38,7 +38,7 @@ class DeleteProfile extends Component {
     deleteProfile() {
         console.log("propssss",this.props)
         axios
-          .get("http://localhost:5000/api/profile-delete/" + this.props.getUser, {
+          .get("http://localhost:5000/api/profile-delete/" + this.props.userId, {
             withCredentials: true,
           })
             .then(() => 
@@ -46,7 +46,8 @@ class DeleteProfile extends Component {
             this.setState({ loggedInUser: null });
             this.props.getUser(null);  
             this.handleRequestClose();
-            this.props.history.push("/signup")
+            this.props.history.push("/signup");
+            
             })
           .catch((error) => console.log(error));
 

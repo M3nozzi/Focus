@@ -49,7 +49,7 @@ class Profile extends Component {
           username:this.props.loggedInUser.username, 
           path: this.props.loggedInUser.path, 
           following: this.props.loggedInUser.following,
-          createdAt: this.props.loggedInUser.createdAt.slice(0,10).split("-").reverse().join("-")
+          // createdAt: this.props.loggedInUser.createdAt.slice(0,10).split("-").reverse().join("-")
         };
   }
  
@@ -74,15 +74,15 @@ class Profile extends Component {
                       <Edit />
                     </IconButton>
                   </Link>
-                  <DeleteProfile getUser={this.state._id} />
+                  <DeleteProfile userId={this.state._id} getUser={this.props.getUser} history={this.props.history}/>
 
                 </ListItemSecondaryAction>
             }
           </ListItem>
           <Divider />
-          <ListItem>
+          {/* <ListItem>
             <ListItemText secondary={"Joined: " + this.state.createdAt} />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Paper>
       /* <>

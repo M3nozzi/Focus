@@ -11,7 +11,8 @@ import Theme from "../../Theme";
     padding: 1.5rem;
     width: ${props => props.narrow ? "300px" : "800px"};
     max-width: 300px;
-    text-align: center
+    text-align: center;
+   
 `
  const Divider = styled.hr`
 
@@ -25,7 +26,12 @@ import Theme from "../../Theme";
 
     font-size: 5rem;
     margin:0;
-    user-select: none
+    user-select: none;
+    font-family:'Roboto';
+    font-weight:700;
+    color: #F97D7D;
+    opacity: 100%;
+
 `
 
 export {

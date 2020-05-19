@@ -1,66 +1,80 @@
-import React, { useEffect, useState } from 'react';
+import React, {Component} from 'react';
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
 const { Title } = Typography;
 const { Meta } = Card;
 
 
-function ContentFollowed() {
+class ContentFollowed extends Component {
     
-    const [Content, setCOntent] = useState([]);
 
-    let variable = {userFrom: localStorage.getItem('userId') }
-
-    useEffect(() => {
-        axios.post('/api/video/getContentFollowed', variable)
-            .then(response => {
-                if (response.data.success) {
-                    console.log(response.data.videos)
-                    setCOntent(response.data.videos)
-                } else {
-                    alert('Failed to get Content FOllowed')
-                }
-            })
-    }, [])
-
-
-    const renderCards = Content.map((video, index) => {
+    constructor(props) {
+        super(props);
+        console.log(props);
+        this.state = {
+            content: [],
+        }
+        this.getContentPlaylist = this.getContentPlaylist.bind(this);
         
-        var minutes = Math.floor(video.duration/60);
-        var seconds = Math.floor(video.duration - minutes * 60);
+    }
 
-        return <Col lg={6} md={8} xs={24}>
-                <div style={{position: 'relative' }}>
-                <a href={`/video/${video._id}`}>
-                    <img style={{width: '100%'}} alt='thumbnail' src={`http://localhost:5000/${video.thumbnail}`}/>
-                    <div className= 'duration' style={{bottom: 0, right: 0, position: 'absolute', margin:'4px', color: '#fff', backgroundColor: 'rgba(17,17,17, 0.8)', opacity: 0.8, padding: '2px 4px', borderRadius: '2px', letterSpacing:'0.5px',  fontSize: '12px', fontWeight: '500', lineHeight: '12px'}}>
-                        <span>{minutes}:{seconds}</span>
-                    </div>
-                </a>
-                </div><br/>
-                <Meta
-                    avatar={
-                        <Avatar src={video.content.icon} />
-                    }
-                    title={video.title}
-                />
-                <span>{video.content.name}}</span> <br/>
-                <span style={{marginLeft:'3rem'}}>{video.views}</span>
-                - <span>{video.createdAt}</span>
-            </Col> 
-    })
+    
+    getContentPlaylist() {
+        
+        let id = this.props.match.params.id;
+        axios.get(`http://localhost:5000/api/contents/` + id, {
+            withCredentials:true,
+            })
+            .then(response => {
 
-    return(
-        <div style={{width: '85%', margin:'3rem auto'}}>
-            <Title level={2}> Followed Content </Title>
-            <hr/>
-            <Row gutter={16}>
-            {renderCards}
-            </Row>
-        </div>
+                this.setState({
+                    content: response.data,
+                })
+            })   
+            .catch(error => console.log(error));
+    }
 
-    );
+    componentDidMount() {
+
+        this.getContentPlaylist();
+    }
+    
+    
+    render() {
+        
+        return(  
+            <div style={{ width: '85%', margin: '3rem auto' }}>
+                <Title level={2}> {this.state.content.name} </Title>
+                <hr />
+                <Row gutter={16}>
+            
+                {this.state.content.playlist.map((playlist, index) => {
+                    return (
+                        <Col key={index} lg={6} md={8} xs={24}>
+                            <div style={{ position: 'relative' }}>
+                                <a href={`/videos/${playlist._id}`}>
+                                    <img style={{ width: '100%' }} alt='thumbnail' src={playlist.playlistImage} />
+                                </a>
+                            </div><br />
+                            <Meta
+                                avatar={
+                                    <Avatar src={this.state.content.icon ? this.state.content.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589837435/focus/computer_device_electronic_entertainment_imac_mobile-1320191161433469763_vkp1jf.png"} />
+                                }
+                                title={playlist.name}
+                            />
+                            <span>{playlist.name}</span> <br />
+                        </Col>
+                    );
+                    })};
+                }
+            
+                </Row>
+            </div>  
+        );
+    }
+            
 }
-
-
+        
 export default ContentFollowed;
+        
+     

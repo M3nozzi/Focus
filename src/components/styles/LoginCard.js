@@ -16,7 +16,7 @@ class LoginCard extends Component {
         return (
             <Cards>
             <header>
-                <Icon className="iconFocus">FOCUS</Icon>
+                <Icon>FOCUS</Icon>
                     <h1 className="SubTitle">Study. Organize. Focus</h1>                    
                     <Carousel autoplay >
                         <div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
-import Button from '../styles/Button';
+
 
 class Login extends Component{
 
@@ -84,7 +84,7 @@ class Login extends Component{
            
 
               <input
-                className={classNameUsername}
+                className="input" 
                 type="text"
                 name="username"
                 placeholder="e-mail"
@@ -100,7 +100,7 @@ class Login extends Component{
             <div className="control">
             
               <input
-                className={classNamePassword}
+                className="input" 
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -113,7 +113,7 @@ class Login extends Component{
             )}
           </div>
     
-          <Button primary>LOGIN</Button>
+          <button className="btnLogin" primary>LOGIN</button>
         </form>
         <p>
           Don't have an account?

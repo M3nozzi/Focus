@@ -43,6 +43,20 @@
   font-size:30px;
 
 }
+
+.btnLogin{
+  background-color:#F97D7D;
+  color:white;
+  font-family: 'Roboto';
+  border-radius:8px;
+}
+.btnSignup{
+  background-color:#F97D7D;
+  color:white;
+  font-family: 'Roboto';
+  border-radius:8px;
+}
+
 .subTitle{
   font-family: 'Roboto';
   font-weight: bold;
@@ -82,11 +96,7 @@
   color:#F97D7D;
 }
 
-.iconFocus{
-  color:#F97D7D;
-  opacity: 100%;
 
-}
 h2,h1, h3 p{
   font-family: 'Roboto', sans-serif;
 }
@@ -99,10 +109,10 @@ body{
   /* font-family: 'Noto Sans JP', sans-serif; */
   margin:0;
 }
-.youtube{
+/* .youtube{
   border: 3px #F97D7D dashed;
   margin-top: 20px;
-}
+} */
 
 button {
 
