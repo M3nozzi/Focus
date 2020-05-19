@@ -95,7 +95,7 @@ class Main extends Component {
                 <Container>
                     {
                         contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
-                            return <Link key={idx}  to={`/content/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name} /></Link>
+                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name} /></Link>
                             }) 
                     }
                     <NewContent onClick={this.showFormCard} />

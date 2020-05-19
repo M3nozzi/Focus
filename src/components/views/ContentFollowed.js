@@ -10,7 +10,7 @@ class ContentFollowed extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
+        console.log("PROPS DO CONTENT FOLLLOW", props);
         this.state = {
             content: [],
         }
@@ -21,12 +21,12 @@ class ContentFollowed extends Component {
     
     getContentPlaylist() {
         
-        let id = this.props.match.params.id;
+        const { id } = this.props.match.params;
         axios.get(`http://localhost:5000/api/contents/` + id, {
             withCredentials:true,
             })
             .then(response => {
-
+                console.log("RESPOSTA DO AXIOS NO CONTENT FOLLOW:", response);
                 this.setState({
                     content: response.data,
                 })
