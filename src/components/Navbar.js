@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
+import ThemeToggle from "./WatchVideos/ChangeTheme/ThemeToggle";
 
 const styles = theme => ({
   root: {
@@ -61,7 +62,7 @@ class Navbar extends Component {
                         <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
               </span>
-             
+            <ThemeToggle/>
           </Toolbar>
         </AppBar>
       )

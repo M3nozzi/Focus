@@ -10,12 +10,14 @@ const Paragraph = styled.p`
 
 const HeaderH3 = styled.h3`
     margin: 0 0 3px;
+    font-size: 150%;
     font-family: 'Roboto';
     font-weight: 700;
 `;
 
 const HeaderH5 = styled.h5`
     margin: 0 0 3px;
+    font-weight: 400;
 `;
 
 const UserCard = styled.div`

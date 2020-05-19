@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import NewContent from './NewContent';
 import AddContent from './AddContent';
 import { Link } from "react-router-dom";
+import FormContents from '../../components/Content/FormContents';
 
 
 const gridStyle = {
@@ -105,7 +106,9 @@ class Main extends Component {
                     }
                 </Container>
             
-            
+                <div style={{ width: "40%", float: "right" }}>
+          <FormContents getData={this.getAllContents} />
+        </div>
             
             {/* <Search style={{ width: 200 }} placeholder="Search" prefix={<SearchOutlined />} /> */}
                 

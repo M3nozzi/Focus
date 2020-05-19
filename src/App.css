@@ -1,6 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&family=Roboto:wght@100;400;700&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700");
 
+
+body.light-mode {
+  background-color: white;
+  color: #434c5e;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #434c5e;
+  color: white;
+
+  
+}
+.dark-mode-toggle button {
+  color: #434c5e;
+
+}
+
+
 .ant-carousel .slick-dots {
   text-align: center;
   height: 160px;
