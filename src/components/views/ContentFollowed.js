@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
+import Loading from '../tools/Loading';
+
+
+
+
 const { Title } = Typography;
 const { Meta } = Card;
+
 
 
 class ContentFollowed extends Component {
@@ -41,6 +47,11 @@ class ContentFollowed extends Component {
     
     
     render() {
+
+        if (!this.state.content || this.state.content.length === 0) {
+             return <Loading />
+                 
+        } 
         
         return(  
             <div style={{ width: '85%', margin: '3rem auto' }}>
