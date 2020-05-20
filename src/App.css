@@ -134,7 +134,7 @@ body.light-mode {
 
 body.dark-mode {
   background-color: #2e3440;
-  color: white;
+  color: white !important;
 
   
 }

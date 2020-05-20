@@ -97,7 +97,7 @@ class Main extends Component {
                 <Container>
                     {
                         contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
-                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name ? contents.owner.name : (contents.owner.name =  "by Admin") } /></Link>
+                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon ? contents.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"} owner={contents.owner.name ? contents.owner.name : "by Admin"} /></Link>
                             }) 
                     }
                     <NewContent getAllContents={this.getAllContents} />

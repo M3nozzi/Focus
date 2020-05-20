@@ -33,12 +33,7 @@ class AuthService {
     .then(response => response.data)
   }
 
-  // deleteProfile(id){
-  //   return this.service
-  //     .get('/profile/:id')
-  //     .then((response) => response.data);
-  // }
-
+  
 
 }
 

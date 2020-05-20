@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from '../tools/Loading';
 import FormPlaylist from "../Content/FormPlaylist";
 // import VideoCard from '../styles/VideoCard';
-
+import NewContent from '../Content/NewContent';
 
 const { Title } = Typography;
 const { Meta } = Card;
@@ -55,15 +55,19 @@ class ContentFollowed extends Component {
         
         return(  
         // <div>
-            <div style={{ width: '85%', margin: '3rem auto' }}>
-                <Title level={2}> {this.state.content.name} </Title>
-                <hr />
-                <Row gutter={16}>
             
+            <div style={{ width: '85%', margin: '3rem auto'}}>
+                <div>
+                    <Title level={2}> {this.state.content.name} </Title>
+                    <hr />
+                    <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist}/>
+                </div>
+                
+                <div style={{ position: 'relative', display: "flex", flexDirection: "row"}}></div>
                 {this.state.content.playlist.map((playlist, index) => {
                     return (
-                        <Col key={index} lg={6} md={8} xs={24}>
-                            <div style={{ position: 'relative' }}>
+                        <Col key={index} span={8} lg={6} md={8} xs={24}>
+                            {/* <div style={{ position: 'relative'}}> */}
                                 {/* <a href={`/videos/${playlist._id}`}>
                                     <img style={{ width: '100%' }} alt='thumbnail' src={playlist.playlistImage} />
                                 </a> */}
@@ -72,7 +76,7 @@ class ContentFollowed extends Component {
                                     src={`https://www.youtube.com/embed/?listType=playlist&list=` + playlist.playlistUrl}
                                     frameBorder="0" allowFullScreen>   </iframe>
                           
-                            </div>
+                            {/* </div> */}
                             <br />
                             <Meta
                                 avatar={
@@ -81,14 +85,19 @@ class ContentFollowed extends Component {
                                 title={playlist.name}
                             />
                             
-                            {/* <span>{playlist.name}</span> <br /> */}
+                           
                         </Col>
                     );
-                    })};
+                    })
+                    
                 }
-        
-                </Row>
-            {/* </div>
+                <NewContent style={{paddingLeft: "150px"}} getContentPlaylist={this.getContentPlaylist}/>
+            </div>
+              
+            // </div>  
+         
+                // </Row> 
+            /* </div>
                 <div>
                 <div>
                 <iframe id="ytplayer" type="text/html" width="420" height="240"
@@ -101,12 +110,10 @@ class ContentFollowed extends Component {
                         src="https://www.youtube.com/embed/?listType=playlist&list=PL_VhV5m_X3BK-j1rqyOG5j7FraqSEIxVw"
                 frameborder="0" allowfullscreen></iframe>                    
                 </div>
-                </div> */}
-                {/* <ThemeToggle/> */}
-                <div>
-                <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist}/>
-            </div>
-        </div>  
+                </div> */
+                /* <ThemeToggle/> */
+                /* <div> */
+            /* </div> */
            
         );
         

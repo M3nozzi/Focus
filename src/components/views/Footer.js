@@ -10,7 +10,7 @@ const Footerstyle = styled.footer`
     align-items: center;
     color: #DEDEDE;
     bottom:0;
-    position: absolute;
+    position: fixed;
     flex:1;
     width: 100%;
     font-size: 0.9rem;
@@ -20,7 +20,7 @@ const Footerstyle = styled.footer`
 const Footer = () => (
     <Footerstyle>
        <p style={{marginTop: 10, marginBottom: 0.5}}>&#64; FOCUS PLAY</p>
-       <p style={{fontSize:"0.6rem"}}>Developed by Fábio and Rhaysa</p>
+       <p style={{fontSize:"0.6rem"}}>Developed by Fabio and Rhaysa</p>
     </Footerstyle>
 );
 

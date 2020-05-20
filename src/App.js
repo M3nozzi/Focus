@@ -31,14 +31,14 @@ class App extends Component {
     this.getTheUser = this.getTheUser.bind(this);
   }
 
-  componentDidMount() {
-    // console.log("----->", this.props);
-    let query = queryString.parse(this.props.location.search);
-    if (query.token) {
-      window.localStorage.setItem("jwt", query.token);
-      this.props.history.push("/");
-    }
-  }
+  // componentDidMount() {
+  //   // console.log("----->", this.props);
+  //   let query = queryString.parse(this.props.location.search);
+  //   if (query.token) {
+  //     window.localStorage.setItem("jwt", query.token);
+  //     this.props.history.push("/");
+  //   }
+  // }
 
 
   fetchUser() {
@@ -48,14 +48,14 @@ class App extends Component {
       this.service
         .loggedin()
         .then((response) => {
-          console.log("User Home", response);
+          console.log("User Logado:", response);
 
           this.setState({
             loggedInUser: response,
           });
         })
         .catch((err) => {
-          // console.log("ERROR inside fetchUser");
+          console.log("ERROR inside fetchUser:", err);
 
           this.setState({
             loggedInUser: false,
@@ -66,7 +66,7 @@ class App extends Component {
 
   getTheUser(userObj) {
     
-    console.log(userObj);
+    console.log("Getting Usedr:", userObj);
     this.setState({
       loggedInUser: userObj,
     });
@@ -120,7 +120,7 @@ class App extends Component {
                 path='/login'
                 render={(props) => <Login getUser={this.getTheUser} {...props} />}
                 /> */}
-                <Route component={NotFound} />
+                {/* <Route component={NotFound} /> */}
             </Switch>
             <Footer />
           </div>
@@ -136,6 +136,7 @@ class App extends Component {
                 {/* <Route exact path='/' component={LandingPage} /> */}
                 {/* <Route exact path="/" component={YoutubeConfig}/> */}
                 {/* <Route exact path="/" component={YoutubeVideo}/> */}
+
                 <Route
                   exact
                   path='/signup'
@@ -147,11 +148,13 @@ class App extends Component {
                   path='/login'
                   render={(props) => <Login getUser={this.getTheUser} {...props} />}
                 />
+
+
                 {/* <Route exact path='/profile' render={(props) => (
               <Profile getUser={this.getTheUser} {...props} />)} /> */}
-                <Route exact path='/video/:videoId' component={VideoDetail} />
-                  <Route exact path='/contentfollowed' component={ContentFollowed} />
-                  <Route component={NotFound} />
+                {/* <Route exact path='/video/:videoId' component={VideoDetail} />
+                  <Route exact path='/contentfollowed' component={ContentFollowed} /> */}
+                  {/* <Route component={NotFound} /> */}
               </Switch>
               <Footer />
             </div>
