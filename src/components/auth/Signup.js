@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-import GoogleAuth from './GoogleAuth';
 import ReactDOM from "react-dom";
 import {
   CardWrapper,
@@ -17,6 +16,7 @@ import {
   CardButton,
   CardLink
 } from "./SignupStyle"; 
+import googleIcon from "../../images/error/google.png"
 // import Onboarding from '../ComponentsSignupOk/Onboarding';
 
 class Signup extends  Component{
@@ -35,6 +35,7 @@ class Signup extends  Component{
         this.service = new AuthService();
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.responseGoogle = this.responseGoogle.bind(this);
      
 
     }
@@ -80,7 +81,13 @@ class Signup extends  Component{
         this.setState({ [name]: value });
       }
 
-    
+      responseGoogle(response) {
+        this.service
+          .googleLogin()
+          .then((resp) => console.log("Response Google:", resp))
+          .catch((err) => console.log(err));
+        console.log("response google:", response);
+      }
      render() {
 
         const { errorMsgUsername, errorMsgPassword } = this.state;
@@ -127,7 +134,6 @@ class Signup extends  Component{
                         placeholder="Password" 
                         onChange={this.handleChange} required />
          
-                {/* <CardIcon className="fa fa-eye" eye small /> */}
                         {errorMsgPassword && (
                        <p className="help is-danger">{this.state.errorMsgPassword}</p>
             )}
@@ -152,15 +158,7 @@ class Signup extends  Component{
 
             <CardOptions>
               <CardOptionsItem>
-                <CardIcon className="fab fa-google" big />
-              </CardOptionsItem>
-
-              <CardOptionsItem>
-                <CardIcon className="fab fa-twitter" big />
-              </CardOptionsItem>
-
-              <CardOptionsItem>
-                <CardIcon className="fab fa-facebook" big />
+            <a className='socialLogin' href="http://localhost:5000/api/auth/google"><img className="socialLogin" src={googleIcon} alt="google" /></a>
               </CardOptionsItem>
             </CardOptions>
           </CardFieldset>

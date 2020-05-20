@@ -42,7 +42,7 @@ class App extends Component {
 
 
   fetchUser() {
-    //console.log("inside fetchUser");
+    console.log("inside fetchUser");
     if (this.state.loggedInUser === null) {
       // console.log("NULL inside fetchUser");
       this.service
@@ -115,14 +115,14 @@ class App extends Component {
                 getUser={this.getTheUser}
                 component={WatchX}
               />
-              <Route
+              {/* <Route
                 exact
                 path='/login'
                 render={(props) => <Login getUser={this.getTheUser} {...props} />}
-                />
+                /> */}
                 <Route component={NotFound} />
             </Switch>
-            {/* <Footer /> */}
+            <Footer />
           </div>
         ) :
           (
@@ -153,7 +153,7 @@ class App extends Component {
                   <Route exact path='/contentfollowed' component={ContentFollowed} />
                   <Route component={NotFound} />
               </Switch>
-              {/* <Footer /> */}
+              <Footer />
             </div>
           )
          

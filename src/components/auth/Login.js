@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardHeading,
   CardBody,
-  CardIcon,
   CardFieldset,
   CardInput,
   CardOptionsItem,
@@ -15,6 +14,7 @@ import {
   CardButton,
   CardLink
 } from "./SignupStyle";
+import googleIcon from "../../images/error/google.png"
 
 class Login extends Component{
 
@@ -123,8 +123,7 @@ class Login extends Component{
                         placeholder="Password" 
                         onChange={this.handleChange} required />
          
-                {/* <CardIcon className="fa fa-eye" eye small /> */}
-                        {errorMsgPassword && (
+              {errorMsgPassword && (
                        <p className="help is-danger">{this.state.errorMsgPassword}</p>
             )}
         </div>
@@ -136,16 +135,8 @@ class Login extends Component{
 
             <CardOptions>
               <CardOptionsItem>
-                <CardIcon className="fab fa-google" big />
+                 <a className='socialLogin' href="http://localhost:5000/api/auth/google"><img className="socialLogin" src={googleIcon} alt="google" /></a>
               </CardOptionsItem>
-
-              {/* <CardOptionsItem>
-                <CardIcon className="fab fa-twitter" big />
-              </CardOptionsItem>
-
-              <CardOptionsItem>
-                <CardIcon className="fab fa-facebook" big />
-              </CardOptionsItem> */}
             </CardOptions>
           </CardFieldset>
 

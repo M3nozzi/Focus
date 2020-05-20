@@ -3,7 +3,7 @@ import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
 import Loading from '../tools/Loading';
 import FormPlaylist from "../Content/FormPlaylist";
-import VideoCard from '../styles/VideoCard';
+// import VideoCard from '../styles/VideoCard';
 
 
 const { Title } = Typography;

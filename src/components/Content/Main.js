@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import NewContent from './NewContent';
 import AddContent from './AddContent';
 import { Link } from "react-router-dom";
-import FormContents from '../../components/Content/FormContents';
+// import FormContents from '../../components/Content/FormContents';
+import FormContentsModal from "../views/FormContentsModal";
 
 
 const gridStyle = {
@@ -99,20 +100,22 @@ class Main extends Component {
                             return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name ? contents.owner.name : (contents.owner.name =  "by Admin") } /></Link>
                             }) 
                     }
-                    <NewContent onClick={this.showFormCard} />
-                    {
+                    <NewContent getAllContents={this.getAllContents} />
+                    {/* {
                         this.state.showForm ? <AddContent showFormCard={this.showFormCard}/>
                         : "..."
-                    }
+                    } */}
                 </Container>
-                <FormContents getData={this.getAllContents} />
-                <div style={{ width: "40%", float: "right" }}>
+                </HomeContentWrapper>
+                /* <FormContents getData={this.getAllContents} /> */
+                /* <FormContentsModal getData={this.getAllContents} /> */
+                /* <div style={{ width: "40%", float: "right" }}>
           
-        </div>
+        </div> */
             
-            {/* <Search style={{ width: 200 }} placeholder="Search" prefix={<SearchOutlined />} /> */}
+            /* <Search style={{ width: 200 }} placeholder="Search" prefix={<SearchOutlined />} /> */
                 
-{/*     
+/*     
                 <button onClick={()=> this.add()} >Add Content</button>
                          {this.state.render && <AddContents/>}
                     <Row gutter={{xs:8,sm:16, md:24, lg:32}}>
@@ -146,9 +149,9 @@ class Main extends Component {
                         })}
                     
                                
-                </Row> */}
+                </Row> */
                 
-            </HomeContentWrapper>
+           
 
         );//closes return
   } //closes render

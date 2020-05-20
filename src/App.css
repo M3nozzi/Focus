@@ -1,7 +1,110 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&family=Roboto:wght@100;400;700&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700");
 
+
+h2,h1, h3 p{
+  font-family: 'Roboto', sans-serif;
+}
+
+html{
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  /* font-family: 'Noto Sans JP', sans-serif; */
+  margin:0;
+}
+/* .youtube{
+  border: 3px #F97D7D dashed;
+  margin-top: 20px;
+} */
+
+button {
+
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color:#F97D7D;
+    border-radius: 8px;
+  }
+
+  .App {
+    text-align: center;
+  }
   
+    .buttonSubmit{
+      background-color:#F97D7D;
+      font-family:"Roboto";
+      color:#fff;
+      border-radius:10px;
+      width: 9vh;
+      height:3vh;
+    }
+
+
+.socialLogin{
+  height:20px;
+}
+
+.modalContent{
+  width: 100%;
+  height:100vh;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:10;
+  background-color:rgba(0,0,0,0.8);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+}
+
+.containerContent{
+  background-color:#fff;
+  color:#000;
+  /* width:20%;
+  height:50%; */
+  width:50vh;
+  height:40vh;
+  border-radius:20px;
+}
+  
+
+  .closeContent {
+    background-color:transparent;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    width: 32px;
+    height: 32px;
+    right:0;
+    cursor:pointer;
+    top: 16px;
+    display:flex;
+    position:relative;
+    align-items:center;
+    font-family: "Roboto";
+ }
+  .closeContent:before, .close:after {
+    content: ' ';
+    position: absolute;
+    width: 2.5 px;
+    height: 24px;
+    background-color: transparent;
+    color:#000;
+ }
+  .closeContent:before {
+    content: "X";
+    /* transform: rotate(45deg); */
+ }
+  /* .closeContent:after { */
+    /* transform: rotate(-45deg); */
+ /* } */
+
+  
+
 .LinkLoginSignup{
   text-decoration: none;
   color:#aaa;
@@ -24,7 +127,8 @@
 
 body.light-mode {
   background-color: white;
-  color: #434c5e;
+  /* color: #434c5e; */
+  color:#000;
   transition: background-color 0.3s ease;
 }
 
@@ -54,6 +158,7 @@ body.dark-mode {
   background: none;
   border: none;
   color: #ebcb8b;
+  /* color:white; */
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -205,47 +310,12 @@ input[type='checkbox'].dmcheck + label {
 }
 
 
-h2,h1, h3 p{
-  font-family: 'Roboto', sans-serif;
-}
-
-html{
-  font-family: 'Roboto', sans-serif;
-}
-
-body{
-  /* font-family: 'Noto Sans JP', sans-serif; */
-  margin:0;
-}
-/* .youtube{
-  border: 3px #F97D7D dashed;
-  margin-top: 20px;
-} */
-
-button {
-
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 20px;
-    background-color:#F97D7D;
-    border-radius: 8px;
-  }
-
   .loginLink{
 
     text-decoration: none;
     color:#3ACCE1;
     font-family:'Roboto', sans-serif;
   }
-.App {
-  text-align: center;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .nav-style{
   background-color:#F97D7D;
@@ -297,7 +367,8 @@ button {
   background: #FFFFFF00 0% 0% no-repeat padding-box;
   border: 1px solid #000000;
   border-radius: 7px;
-  opacity: 0.3;
+  opacity: 0.5;
+  color: #434343;
 }
 
 

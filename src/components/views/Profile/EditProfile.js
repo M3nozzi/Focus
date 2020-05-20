@@ -65,6 +65,13 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
     
     const clickSubmit = () => {
 
+      //e.preventDefault();
+      
+      if(values.password.trim() === "")
+      {
+        
+        return setValues({...values, error: "Cannot be Empty!"})
+      }
       // const userData = new FormData();
       // console.log(values.name && userData.append('name', values.name));
       // values.password && userData.append('passoword', values.password);
@@ -139,10 +146,10 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
             <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
                   <br />
             
-            <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
+            <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal" required/>
             <br/> {
               values.error && (<Typography component="p" color="error">
-                <Icon color="error" className={classes.error}>error</Icon>
+                <Icon color="error" className={classes.error}/> 
                 {values.error}
               </Typography>)
             }

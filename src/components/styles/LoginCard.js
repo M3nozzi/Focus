@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Cards, Divider, Icon } from './Card';
-import Button from './Button';
+import {  Divider } from './Card';
 import { Carousel } from 'antd';
 import learnOnlineImg from '../../images/firstPage/LearnOnline.svg';
 import learnOnline2 from '../../images/firstPage/SupportTeam.svg';
@@ -11,12 +10,7 @@ import {
     CardHeader,
     CardHeading,
     CardBody,
-    CardIcon,
     CardFieldset,
-    CardInput,
-    CardOptionsItem,
-    CardOptions,
-    CardOptionsNote,
     CardButton,
     CardLink
 } from "../../components/auth/SignupStyle";
@@ -30,8 +24,7 @@ class LoginCard extends Component {
 
     render() {
         return (
-            // <Cards>
-            // <header>
+          
             <CardWrapper>
         <CardHeader>
                     <CardHeading><h1 className="FocusMain">FOCUS</h1></CardHeading>
@@ -59,15 +52,10 @@ class LoginCard extends Component {
                 <Divider />
                 <div>
                 <CardFieldset>
-                <Link to={"/signup"}><CardButton type="button">Sign Up</CardButton></Link>
-               </CardFieldset>
+                            <Link to={"/signup"}><CardButton type="button">Sign Up</CardButton></Link>
+                </CardFieldset>
                 </div>
-                {/* <p>
-                Already have account?
-                <Link className='loginLink' to={"/login"}> Login</Link>
-                <br/>
-                    </p> */}
-
+                
         <CardFieldset>
             <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account</Link></CardLink>
           </CardFieldset>
