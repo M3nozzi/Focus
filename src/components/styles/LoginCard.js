@@ -6,6 +6,22 @@ import { Carousel } from 'antd';
 import learnOnlineImg from '../../images/firstPage/LearnOnline.svg';
 import learnOnline2 from '../../images/firstPage/SupportTeam.svg';
 import learnOnline3 from '../../images/firstPage/OnlineShopping_1.svg';
+import {
+    CardWrapper,
+    CardHeader,
+    CardHeading,
+    CardBody,
+    CardIcon,
+    CardFieldset,
+    CardInput,
+    CardOptionsItem,
+    CardOptions,
+    CardOptionsNote,
+    CardButton,
+    CardLink
+} from "../../components/auth/SignupStyle";
+  
+
 
 class LoginCard extends Component {
     constructor(){
@@ -14,10 +30,17 @@ class LoginCard extends Component {
 
     render() {
         return (
-            <Cards>
-            <header>
-                <Icon>FOCUS</Icon>
-                    <h1 className="SubTitle">Study. Organize. Focus</h1>                    
+            // <Cards>
+            // <header>
+            <CardWrapper>
+        <CardHeader>
+                    <CardHeading><h1 className="FocusMain">FOCUS</h1></CardHeading>
+                    <h1 className="SubTitle">Study. Organize. Focus</h1> 
+        </CardHeader>
+
+                <CardBody>
+                    
+                                       
                     <Carousel autoplay >
                         <div>
                             <h2 className="subTitle">Organize your<br/>Study videos</h2>
@@ -32,17 +55,25 @@ class LoginCard extends Component {
                             <img src={learnOnline3} alt="studying online" />
                         </div>
                     </Carousel>
-            </header>
+           
                 <Divider />
                 <div>
-                    <Button primary> <Link to='/signup' style={{ textDecoration: 'none',  color: 'white'}}>SIGN UP</Link></Button>
+                <CardFieldset>
+                <Link to={"/signup"}><CardButton type="button">Sign Up</CardButton></Link>
+               </CardFieldset>
                 </div>
-                <p>
+                {/* <p>
                 Already have account?
                 <Link className='loginLink' to={"/login"}> Login</Link>
                 <br/>
-                </p>
-        </Cards>
+                    </p> */}
+
+        <CardFieldset>
+            <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account</Link></CardLink>
+          </CardFieldset>
+                    </CardBody>
+                    </CardWrapper>   
+    
     )
   }
 }

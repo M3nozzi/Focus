@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
-
+import ReactDOM from "react-dom";
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody,
+  CardIcon,
+  CardFieldset,
+  CardInput,
+  CardOptionsItem,
+  CardOptions,
+  CardOptionsNote,
+  CardButton,
+  CardLink
+} from "./SignupStyle"; 
+// import Onboarding from '../ComponentsSignupOk/Onboarding';
 
 class Signup extends  Component{
 
@@ -20,6 +35,7 @@ class Signup extends  Component{
         this.service = new AuthService();
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+     
 
     }
 
@@ -64,7 +80,8 @@ class Signup extends  Component{
         this.setState({ [name]: value });
       }
 
-    render() {
+    
+     render() {
 
         const { errorMsgUsername, errorMsgPassword } = this.state;
 
@@ -76,72 +93,156 @@ class Signup extends  Component{
         const classNamePassword = errorMsgPassword
             ? `${inputClassName} is-danger`
             : inputClassName;
+        
+        return (
+            <div className="App">
+      <CardWrapper>
+        <CardHeader>
+          <CardHeading>Sign in</CardHeading>
+        </CardHeader>
 
-        return(
-            <div>
-            <div className="social-container">
-            <GoogleAuth />
-                </div>
-                <p>or</p>
-                <br />
-                <p>Sign up with your email address</p>
-                <form onSubmit={this.handleFormSubmit}>
-                <div className="field">
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
+                    <CardBody>
+
+                        <CardFieldset>
+                        <div className="field">
+                    <CardInput  type="text" 
                         name="email"
                         value={this.state.email} 
-                        placeholder="e-mail" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                    {errorMsgUsername && (
+                        placeholder="E-mail" 
+                        onChange={this.handleChange} required />
+                                
+                        {errorMsgUsername && (
                         <p className="help is-danger">{this.state.errorMsgUsername}</p>
                     )}
                 </div>
-
-                <div className="field">
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="password" 
+             </CardFieldset>
+           
+                        
+        
+                        <CardFieldset>
+                        <div className="field">
+            <CardInput type="password" 
                         name="password"
                         value={this.state.password}  
                         placeholder="Password" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
-
-                <div className="field">
-            
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
+                        onChange={this.handleChange} required />
+         
+                {/* <CardIcon className="fa fa-eye" eye small /> */}
+                        {errorMsgPassword && (
+                       <p className="help is-danger">{this.state.errorMsgPassword}</p>
+            )}
+        </div>
+         </CardFieldset>
+           
+                            
+          
+                        <CardFieldset>
+                        <div className="field">
+            <CardInput ptype="text" 
                         name="name"
                         value={this.state.name}
                         placeholder="What should we call you?" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                    {errorMsgPassword && (
-                        <p className="help is-danger">{this.state.errorMsgPassword}</p>
-                    )}
-                </div>
-                    <button className="btnSignup" primary>SIGN UP</button>
-            </form>
-            <p>
-                Already have account?
-                <Link to={"/login"}> Login</Link>
-                <br/>
-                 Go Back
-                <Link to={"/"}> Home</Link>
-            </p>
-            </div>
-        );
+                                    onChange={this.handleChange} required />
+                      </div> 
+            </CardFieldset>
+              
+                            
+          <CardFieldset>
+            <CardOptionsNote>Or sign up with</CardOptionsNote>
+
+            <CardOptions>
+              <CardOptionsItem>
+                <CardIcon className="fab fa-google" big />
+              </CardOptionsItem>
+
+              <CardOptionsItem>
+                <CardIcon className="fab fa-twitter" big />
+              </CardOptionsItem>
+
+              <CardOptionsItem>
+                <CardIcon className="fab fa-facebook" big />
+              </CardOptionsItem>
+            </CardOptions>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardButton type="button" onClick={this.handleFormSubmit}>Sign Up</CardButton>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account</Link></CardLink>
+          </CardFieldset>
+        </CardBody>
+                </CardWrapper>
+                
+    </div>
+        )
+
+        // return(
+        //     <div>
+        //     <div className="social-container">
+        //     <GoogleAuth />
+        //         </div>
+        //         <p>or</p>
+        //         <br />
+        //         <p>Sign up with your email address</p>
+        //         <form onSubmit={this.handleFormSubmit}>
+        //         <div className="field">
+        //             <div className="control">
+        //             <input 
+        //                 className="input" 
+        //                 type="text" 
+        //                 name="email"
+        //                 value={this.state.email} 
+        //                 placeholder="e-mail" 
+        //                 onChange={this.handleChange}
+        //                 />
+        //             </div>
+        //             {errorMsgUsername && (
+        //                 <p className="help is-danger">{this.state.errorMsgUsername}</p>
+        //             )}
+        //         </div>
+
+        //         <div className="field">
+        //             <div className="control">
+        //             <input 
+        //                 className="input" 
+        //                 type="password" 
+        //                 name="password"
+        //                 value={this.state.password}  
+        //                 placeholder="Password" 
+        //                 onChange={this.handleChange}
+        //                 />
+        //             </div>
+        //         </div>
+
+        //         <div className="field">
+            
+        //             <div className="control">
+        //             <input 
+        //                 className="input" 
+        //                 type="text" 
+        //                 name="name"
+        //                 value={this.state.name}
+        //                 placeholder="What should we call you?" 
+        //                 onChange={this.handleChange}
+        //                 />
+        //             </div>
+        //             {errorMsgPassword && (
+        //                 <p className="help is-danger">{this.state.errorMsgPassword}</p>
+        //             )}
+        //         </div>
+        //             <button className="btnSignup" primary>SIGN UP</button>
+        //     </form>
+        //     <p>
+        //         Already have account?
+        //         <Link to={"/login"}> Login</Link>
+        //         <br/>
+        //          Go Back
+        //         <Link to={"/"}> Home</Link>
+        //     </p>
+        //     </div>
+        // );
     }
 }
 

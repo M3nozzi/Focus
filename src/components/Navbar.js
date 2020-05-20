@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../components/auth/auth-service';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import HomeIcon from '@material-ui/icons/Home'
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
+import styled from 'styled-components';
 import ThemeToggle from "./WatchVideos/ChangeTheme/ThemeToggle";
 
-const styles = theme => ({
-  root: {
-    color: '#F97D7D',
+
+
+const Wrapper = styled.header`
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #F97D7D;
+    height: 3.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+`;
+
+const NavigationItem = styled.a`
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    color: #FFF;
+    align-items: space-between;
+    &:hover {
+        cursor: pointer;
+        color: #707070;
+    }
+`;
+
+const IconNav = styled.img`
+    margin-right: .5rem;
+`;
+
+const LinkNav = styled.span`
+    color: white;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: +2px;
+    font-weight: bold;
     
-  }
-})
+`;
+
 
 class Navbar extends Component {
   
@@ -38,46 +70,67 @@ class Navbar extends Component {
       this.props.getUser(null);  
     })
   }
-
   
-    
   render(){
+    
+
     if(this.state.loggedInUser){
       return(
-        <AppBar color={styles.root} position="static">
-            <Toolbar>
+         <Wrapper>
+      
+          <NavigationItem>
+        
+          <Typography style={{fontWeight: 700}} variant="h6" color="inherit">
+              FOCUS
+               </Typography>
+             
+          
+                <LinkNav><Link to="/main">
+                    <IconButton aria-label="Home" style={{marginTop: 0, marginLeft: 10, padding: 0}}>
+                      <HomeIcon />
+                    </IconButton>
+                </Link></LinkNav>
+            </NavigationItem>
+
+            <NavigationItem>
+            <div>
+            <ThemeToggle/>
+            </div>
+            </NavigationItem>
+                  <NavigationItem>
+                  <Link to={"/profile/" + this.state.loggedInUser._id}>
+                   {/* <Button>My Profile</Button> */}
+                     <Avatar src={this.state.loggedInUser.path} />
+                 </Link>
+            
+                   <Link to='/'>
+                           <Button style={{color: "#FFF", fontWeight: 600}} onClick={() => this.logoutUser()}>Logout</Button>
+                   </Link>
+                   </NavigationItem>
+               
+              
+       
+         </Wrapper> 
+      )
+    } else {
+      return (
+        <Wrapper >
+
+           <NavigationItem>
         
               <Typography variant="h6" color="inherit">
                 FOCUS
               </Typography>
-                <span>
-                <Link to="/main"><IconButton aria-label="Home">
-                    <HomeIcon/>
-                </IconButton></Link>
-                <Link to={"/profile/" + this.state.loggedInUser._id}>
-                {/* <Button>My Profile</Button> */}
-                <Avatar src={this.state.loggedInUser.path} />
-              </Link>
-                    <Link to='/'>
-                        <button onClick={() => this.logoutUser()}>Logout</button>
-              </Link>
-              </span>
-            <ThemeToggle/>
-          </Toolbar>
-        </AppBar>
-      )
-    } else {
-      return (
-          <AppBar position="static">
-            <Toolbar>
-              <div>
-                <nav className="nav-style">
-                  <p className="focusNavbar">FOCUS</p>
-                    <Link className="login" to='/login' style={{ textDecoration: 'none' }}>Login</Link>
-                </nav>
-              </div>
-            </Toolbar>
-          </AppBar>
+              </NavigationItem>
+
+              <NavigationItem>
+              <LinkNav>
+                <Link style={{paddingLeft: "500px"}} to='/login' style={{color: "#FFF", textDecoration: 'none' }} variant="h6">Login</Link>
+            </LinkNav>
+            
+            </NavigationItem>
+         
+          </Wrapper>
       )
     }
   }

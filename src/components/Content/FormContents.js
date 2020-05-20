@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -20,7 +19,9 @@ class FormContents extends  Component{
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
-
+        this.toggleForm = this.toggleForm.bind(this);
+        this.showAddContentForm = this.showAddContentForm.bind(this);
+        
     }
 
 
@@ -37,7 +38,10 @@ class FormContents extends  Component{
 
             .then(() => {
                 this.props.getData();
-                this.setState({ name: "" });
+                this.setState({ 
+                    name: "",
+                    icon: "", 
+                });
             })
             .catch((error) => console.log(error));   
     }
@@ -49,6 +53,14 @@ class FormContents extends  Component{
         this.setState({ [name]: value });
     }
     
+    toggleForm() {
+        this.setState((prevState) => {
+          return {
+            isShowing: !prevState.isShowing,
+          };
+        });
+    }
+
     handleFileChange(event) {
         const uploadData = new FormData();
     
@@ -65,56 +77,65 @@ class FormContents extends  Component{
           .catch((error) => console.log(error));
       }
 
-    render() {
-
-       
-        return(
-            <div>
-            <div className="social-container">
-                           </div>
+      showAddContentForm() {
+          if (this.state.isShowing) {
+              return (
+                  <div>
+                      <div className="social-container">
+                      </div>
             
-                <p>Create a content</p>
-                <form onSubmit={this.handleFormSubmit}>
-                <div className="field">
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="name"
-                        value={this.state.name} 
-                        placeholder="Content Name" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
+                      <p>Create a content</p>
+                      <form onSubmit={this.handleFormSubmit}>
+                          <div className="field">
+                              <div className="control">
+                                  <input
+                                      className="input"
+                                      type="text"
+                                      name="name"
+                                      value={this.state.name}
+                                      placeholder="Content Name"
+                                      onChange={this.handleChange}
+                                  />
+                              </div>
                     
-                </div>
+                          </div>
 
-                <div className="field">
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="file" 
-                        name="icon"
-                        onChange={this.handleFileChange}
-                            />
-                         {/* <span className="file-cta"> */}
-                            <span className="file-icon">
-                                <i className="fas fa-upload"></i>
-                            </span>
-                         <span className="file-label">Choose a file…</span>
-                         {/* </span>   */}
-                    </div>
-                </div>
+                          <div className="field">
+                              <div className="control">
+                                  <input
+                                      className="input"
+                                      type="file"
+                                      name="icon"
+                                      onChange={this.handleFileChange}
+                                  />
+                                  {/* <span className="file-cta"> */}
+                                  <span className="file-icon">
+                                      <i className="fas fa-upload"></i>
+                                  </span>
+                                  <span className="file-label">Choose a file…</span>
+                                  {/* </span>   */}
+                              </div>
+                          </div>
 
-                <input className="button" type="submit" value="Submit" />
-            </form>
-            <p>
-                 Go Back
-                <Link to={"/"}> Home</Link>
-            </p>
-            </div>
+                          <input className="button" type="submit" value="Submit" />
+                      </form>
+          
+                  </div>
+              );
+          }
+      }
+    
+      render() {
+        return (
+          <div>
+            <hr />
+            <button className="button" onClick={() => this.toggleForm()}>
+              Add New Content
+            </button>
+            {this.showAddContentForm()}
+          </div>
         );
-    }
+      }
 }
 
 export default FormContents;

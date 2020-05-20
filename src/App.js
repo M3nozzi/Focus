@@ -16,7 +16,8 @@ import VideoDetail from './components/views/VideoDetail';
 import ContentFollowed from './components/views/ContentFollowed';
 import Main from "./components/Content/Main";
 import WatchX from './components/WatchVideos/WatchX';
-
+import NotFound from "./components/views/NotFound"
+import Footer from './components/views/Footer';
 
 
 
@@ -118,8 +119,10 @@ class App extends Component {
                 exact
                 path='/login'
                 render={(props) => <Login getUser={this.getTheUser} {...props} />}
-              />
+                />
+                <Route component={NotFound} />
             </Switch>
+            {/* <Footer /> */}
           </div>
         ) :
           (
@@ -147,11 +150,13 @@ class App extends Component {
                 {/* <Route exact path='/profile' render={(props) => (
               <Profile getUser={this.getTheUser} {...props} />)} /> */}
                 <Route exact path='/video/:videoId' component={VideoDetail} />
-                <Route exact path='/contentfollowed' component={ContentFollowed} />
+                  <Route exact path='/contentfollowed' component={ContentFollowed} />
+                  <Route component={NotFound} />
               </Switch>
+              {/* <Footer /> */}
             </div>
           )
-   
+         
       }
       </div>
     )

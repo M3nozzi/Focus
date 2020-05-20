@@ -8,6 +8,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     position: relative;
+  
 `;
 
 export const HeaderText = styled.h1`

@@ -96,7 +96,7 @@ class Main extends Component {
                 <Container>
                     {
                         contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
-                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name} /></Link>
+                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon} owner={contents.owner.name ? contents.owner.name : (contents.owner.name =  "by Admin") } /></Link>
                             }) 
                     }
                     <NewContent onClick={this.showFormCard} />
@@ -105,9 +105,9 @@ class Main extends Component {
                         : "..."
                     }
                 </Container>
-            
+                <FormContents getData={this.getAllContents} />
                 <div style={{ width: "40%", float: "right" }}>
-          <FormContents getData={this.getAllContents} />
+          
         </div>
             
             {/* <Search style={{ width: 200 }} placeholder="Search" prefix={<SearchOutlined />} /> */}

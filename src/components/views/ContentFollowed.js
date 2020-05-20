@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
 import Loading from '../tools/Loading';
-// import ThemeToggle from "../WatchVideos/ChangeTheme/ThemeToggle";
 import FormPlaylist from "../Content/FormPlaylist";
-
+import VideoCard from '../styles/VideoCard';
 
 
 const { Title } = Typography;
@@ -68,22 +67,26 @@ class ContentFollowed extends Component {
                                 {/* <a href={`/videos/${playlist._id}`}>
                                     <img style={{ width: '100%' }} alt='thumbnail' src={playlist.playlistImage} />
                                 </a> */}
+                               
                                 <iframe id="ytplayer" type="text/html" width="520" height="340"
                                     src={`https://www.youtube.com/embed/?listType=playlist&list=` + playlist.playlistUrl}
                                     frameBorder="0" allowFullScreen>   </iframe>
-                            </div><br />
+                          
+                            </div>
+                            <br />
                             <Meta
                                 avatar={
-                                    <Avatar src={this.state.content.icon ? this.state.content.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589837435/focus/computer_device_electronic_entertainment_imac_mobile-1320191161433469763_vkp1jf.png"} />
+                                    <Avatar src={this.state.content.icon ? this.state.content.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"} />
                                 }
                                 title={playlist.name}
                             />
+                            
                             {/* <span>{playlist.name}</span> <br /> */}
                         </Col>
                     );
                     })};
                 }
-            <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist}/>
+        
                 </Row>
             {/* </div>
                 <div>
@@ -99,10 +102,14 @@ class ContentFollowed extends Component {
                 frameborder="0" allowfullscreen></iframe>                    
                 </div>
                 </div> */}
-            {/* <ThemeToggle/> */}
+                {/* <ThemeToggle/> */}
+                <div>
+                <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist}/>
+            </div>
         </div>  
-            
+           
         );
+        
     }
             
 }

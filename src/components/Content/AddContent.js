@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import FormContents from "./FormContents";
 
 
 const AddContentCard = styled.div`
@@ -33,14 +34,18 @@ class AddContent extends React.Component {
 
         this.state = {
           showForm: false,
+
         };
     }
   
   showFormCard = () => {
-    this.setState({
-        showForm: !this.state.showForm,
+    this.setState((prevState) => {
+      return{
+      showForm: !prevState.showForm,
+       }
     })
   }
+
 
   getNewContent = e => {
     fetch('https://randomuser.me/api/')
@@ -56,19 +61,84 @@ class AddContent extends React.Component {
     }); 
   }
   
+  showAddContentForm() {
+    if (this.state.isShowing) {
+      return (
+        <div>
+        <div className="social-container">
+        </div>
+
+        <p>Create a content</p>
+        <form onSubmit={this.handleFormSubmit}>
+            <div className="field">
+                <div className="control">
+                    <input
+                        className="input"
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        placeholder="Content Name"
+                        onChange={this.handleChange}
+                    />
+                </div>
+      
+            </div>
+
+            <div className="field">
+                <div className="control">
+                    <input
+                        className="input"
+                        type="file"
+                        name="icon"
+                        onChange={this.handleFileChange}
+                    />
+                  
+                    <span className="file-icon">
+                        <i className="fas fa-upload"></i>
+                    </span>
+                    <span className="file-label">Choose a file…</span>
+                  
+                </div>
+            </div>
+
+            <input className="button" type="submit" value="Submit" />
+        </form>
+
+    </div>
+    )
+  }
+  }
+  
   render() {
     return (
-      <AddContentCard
-        className='NewUserButton'
-        onClick={this.showFormCard}>
+      <div>
+        <hr />
+        <button className="button" onClick={() => this.showFormCard ()}>
         <h1 style={{fontSize: '5rem'}}>+</h1>
-        <h2>ADD NEW CONTENT</h2>
-        <p style={{ color: '#BDBDBD',padding: '10px 0 20px',
+          <h2>ADD NEW CONTENT</h2>
+          <p style={{ color: '#BDBDBD',padding: '10px 0 20px',
             margin: '10px'}}>
         </p>
-      </AddContentCard>
+        </button>
+        {this.showAddContentForm()}
+      </div>
     );
+   }
   }
-}
+
+  // render() {
+  //   return (
+  //     <AddContentCard
+  //       className='NewUserButton'
+  //       onClick={this.showFormCard}>
+  //       <h1 style={{fontSize: '5rem'}}>+</h1>
+  //       <h2>ADD NEW CONTENT</h2>
+  //       <p style={{ color: '#BDBDBD',padding: '10px 0 20px',
+  //           margin: '10px'}}>
+  //       </p>
+  //     </AddContentCard>
+  //   );
+  // }
+// }
 
 export default AddContent;

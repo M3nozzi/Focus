@@ -56,14 +56,14 @@ class Profile extends Component {
   render() {
     return (
 
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.root} style={{maxWidth: 600, margin: 'auto'}} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Profile
         </Typography>
         <List dense>
           <ListItem>
             <ListItemAvatar>
-              <Avatar src={this.state.path} className={classes.bigAvatar} />
+              <Avatar style={{width: 100, height:100, margin:10}}src={this.state.path} className={classes.bigAvatar} />
             </ListItemAvatar>
             <ListItemText primary={this.state.name + " / " + this.state.username} />
             {
