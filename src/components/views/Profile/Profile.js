@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Edit from '@material-ui/icons/Edit'
 import Divider from '@material-ui/core/Divider';
-
+import Onboarding from '../../ComponentsSignupOk/Onboarding';
 import DeleteProfile from './DeleteProfile'
 // import AuthService from '../../auth/auth-service';
 
@@ -84,14 +84,18 @@ class Profile extends Component {
             <ListItemText secondary={"Joined: " + this.state.createdAt} />
           </ListItem> */}
         </List>
+        <div>
+        <Onboarding/>
+        </div>
       </Paper>
+      
       /* <>
         <div>
           <Avatar size={64} icon={<UserOutlined />} />
           {this.state.path ? (<img src={this.props.path} alt={this.props.name} />) : (<img src="" alt={this.props.name} />)}
           <h1>{this.props.name}</h1>
           <h3>{this.props.username}</h3>
-            
+        
         </div>
       </> */
     )

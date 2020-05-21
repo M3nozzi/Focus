@@ -56,7 +56,7 @@ class Login extends Component{
         if (this.props.location.state) {
           redirectTo = this.props.location.state.from.pathname;
         }
-        this.props.history.push(redirectTo + "/" + response._id); //+ response._id
+        this.props.history.push(redirectTo + "/" + response._id); 
       })
       .catch((error) => {
         const { message } = error.response.data;
@@ -151,49 +151,7 @@ class Login extends Component{
       </CardWrapper>
     </div>
 
-      // <div className="section">
-      //   <form onSubmit={this.handleFormSubmit}>
-      //     <div className="field">
-      //       <div className="control">
-           
-
-      //         <input
-      //           className="input" 
-      //           type="text"
-      //           name="username"
-      //           placeholder="e-mail"
-      //           value={this.state.username}
-      //           onChange={this.handleChange}
-      //         />
-      //       </div>
-      //       {errorMsgUsername && (
-      //         <p className="help is-danger">{this.state.errorMsgUsername}</p>
-      //       )}
-      //     </div>
-      //     <div className="field">
-      //       <div className="control">
-            
-      //         <input
-      //           className="input" 
-      //           type="password"
-      //           name="password"
-      //           placeholder="Password"
-      //           value={this.state.password}
-      //           onChange={this.handleChange}
-      //         />
-      //       </div>
-      //       {errorMsgPassword && (
-      //         <p className="help is-danger">{this.state.errorMsgPassword}</p>
-      //       )}
-      //     </div>
-    
-      //     <button className="btnLogin" primary>LOGIN</button>
-      //   </form>
-      //   <p>
-      //     Don't have an account?
-      //     <Link to={"/signup"}> Signup</Link>
-      //   </p>
-      // </div>
+ 
     );
   }
 }

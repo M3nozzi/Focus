@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {FormVideoStyle} from "./FormVideoStyle"; 
 
 
 class FormContentsModal extends  Component{
@@ -74,12 +75,13 @@ class FormContentsModal extends  Component{
               return (
                   <div>
 
+<FormVideoStyle>
                       <h2>Create a new content</h2>
                       <form onSubmit={this.handleFormSubmit}>
                           <div className="field">
                               <div className="control">
                                   <input
-                                      className="input"
+                                      className="inputForm"
                                       type="text"
                                       name="name"
                                       value={this.state.name}
@@ -93,7 +95,7 @@ class FormContentsModal extends  Component{
                           <div className="field">
                               <div className="control">
                                   <input
-                                      className="input"
+                                      className="inputForm"
                                       type="file"
                                       name="icon"
                                       onChange={this.handleFileChange}
@@ -108,7 +110,7 @@ class FormContentsModal extends  Component{
                           <input className="buttonSubmit" type="submit" value="Submit" />
                           
                       </form>
-          
+                      </FormVideoStyle>
                   </div>
               );
               }

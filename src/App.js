@@ -11,7 +11,6 @@ import AuthService from './components/auth/auth-service';
 import Navbar from "./components/Navbar";
 import ProtectedRoute from './components/auth/protected-routes';
 import queryString from 'query-string';
-// import LandingPage from './components/views/LandingPage';
 import VideoDetail from './components/views/VideoDetail';
 import ContentFollowed from './components/views/ContentFollowed';
 import Main from "./components/Content/Main";
@@ -20,31 +19,24 @@ import NotFound from "./components/views/NotFound"
 import Footer from './components/views/Footer';
 
 
-
 class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = { loggedInUser: null };
     this.service = new AuthService();
 
     this.getTheUser = this.getTheUser.bind(this);
   }
 
-  // componentDidMount() {
-  //   // console.log("----->", this.props);
-  //   let query = queryString.parse(this.props.location.search);
-  //   if (query.token) {
-  //     window.localStorage.setItem("jwt", query.token);
-  //     this.props.history.push("/");
-  //   }
-  // }
 
 
   fetchUser() {
-    console.log("inside fetchUser");
+    console.log("inside fetchUser", this.state.loggedInUser);
+
     if (this.state.loggedInUser === null) {
-      // console.log("NULL inside fetchUser");
+     
       this.service
         .loggedin()
         .then((response) => {
@@ -60,13 +52,15 @@ class App extends Component {
           this.setState({
             loggedInUser: false,
           });
+         // this.service.logout();
         });
     }
   }
 
   getTheUser(userObj) {
     
-    console.log("Getting Usedr:", userObj);
+    console.log("getTheUser func no Appjs:", userObj);
+    
     this.setState({
       loggedInUser: userObj,
     });
@@ -78,6 +72,7 @@ class App extends Component {
       
     return (
     <div>
+    
       {
         this.state.loggedInUser ? (
           <div className="App">
@@ -115,6 +110,7 @@ class App extends Component {
                 getUser={this.getTheUser}
                 component={WatchX}
               />
+              <Route exact path='/' component={Home} />
               {/* <Route
                 exact
                 path='/login'
@@ -127,7 +123,7 @@ class App extends Component {
         ) :
           (
             <div className="App">
-
+              
               <Navbar
                 userInSession={this.state.loggedInUser}
                 getUser={this.getTheUser} />

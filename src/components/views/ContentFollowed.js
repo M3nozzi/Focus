@@ -3,8 +3,9 @@ import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from "axios";
 import Loading from '../tools/Loading';
 import FormPlaylist from "../Content/FormPlaylist";
-// import VideoCard from '../styles/VideoCard';
 import NewContent from '../Content/NewContent';
+import FormPlaylistModal from "./FormPlaylistModal";
+import {FormVideoStyle} from "./FormVideoStyle"; 
 
 const { Title } = Typography;
 const { Meta } = Card;
@@ -19,11 +20,15 @@ class ContentFollowed extends Component {
         console.log("PROPS DO CONTENT FOLLLOW", props);
         this.state = {
             content: [],
+            toggler:false,
+            
         }
         this.getContentPlaylist = this.getContentPlaylist.bind(this);
+
         
     }
 
+    
     
     getContentPlaylist() {
         
@@ -45,6 +50,11 @@ class ContentFollowed extends Component {
         this.getContentPlaylist();
     }
     
+    changeTogglerState = () => {
+       this.setState({
+            toggler: !this.toggler,
+        })
+    }
     
     render() {
 
@@ -56,48 +66,60 @@ class ContentFollowed extends Component {
         return(  
         // <div>
             
-            <div style={{ width: '85%', margin: '3rem auto'}}>
+            <div style={{ width: '85%', margin: '3rem auto' }}>
+                <div className="btnFormDiv"><FormPlaylistModal theContent={this.state.content} getTheContent={this.getContentPlaylist} /></div>
                 <div>
                     <Title level={2}> {this.state.content.name} </Title>
                     <hr />
-                    <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist}/>
+                    {/* <FormPlaylist theContent={this.state.content} getTheContent={this.getContentPlaylist} /> */}
+                    
                 </div>
                 
-                <div style={{ position: 'relative', display: "flex", flexDirection: "row"}}></div>
+                <div style={{ position: 'relative', display: "flex", flexDirection: "row", flexWrap: "wrap", }}>
                 {this.state.content.playlist.map((playlist, index) => {
                     return (
-                        <Col key={index} span={8} lg={6} md={8} xs={24}>
-                            {/* <div style={{ position: 'relative'}}> */}
-                                {/* <a href={`/videos/${playlist._id}`}>
+                        /* <Col key={index} span={8} lg={6} md={8} xs={24}> */
+                            /* <div style={{ position: 'relative'}}> */
+                                /* <a href={`/videos/${playlist._id}`}>
                                     <img style={{ width: '100%' }} alt='thumbnail' src={playlist.playlistImage} />
-                                </a> */}
-                               
+                                </a> */
+                               <FormVideoStyle>
                                 <iframe id="ytplayer" type="text/html" width="520" height="340"
                                     src={`https://www.youtube.com/embed/?listType=playlist&list=` + playlist.playlistUrl}
                                     frameBorder="0" allowFullScreen>   </iframe>
                           
+                         
+                                    {/* <FsLightbox 
+                                        onCLick={() => this.changeTogglerState()}
+                                        sources={`https://www.youtube.com/embed/?listType=playlist&list=` + playlist.playlistUrl}
+                                    /> */}
+
+
+
                             {/* </div> */}
-                            <br />
+                                <br />
+                                
+                               
                             <Meta
                                 avatar={
                                     <Avatar src={this.state.content.icon ? this.state.content.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"} />
                                 }
                                 title={playlist.name}
                             />
-                            
+                            </FormVideoStyle>
                            
-                        </Col>
+                        /* </Col> */
                     );
                     })
                     
                 }
-                <NewContent style={{paddingLeft: "150px"}} getContentPlaylist={this.getContentPlaylist}/>
+                </div>
+                {/* <NewContent style={{paddingLeft: "150px"}} getContentPlaylist={this.getContentPlaylist}/> */}
             </div>
               
-            // </div>  
+          
          
-                // </Row> 
-            /* </div>
+            /* /* </div>
                 <div>
                 <div>
                 <iframe id="ytplayer" type="text/html" width="420" height="240"
@@ -110,10 +132,10 @@ class ContentFollowed extends Component {
                         src="https://www.youtube.com/embed/?listType=playlist&list=PL_VhV5m_X3BK-j1rqyOG5j7FraqSEIxVw"
                 frameborder="0" allowfullscreen></iframe>                    
                 </div>
-                </div> */
-                /* <ThemeToggle/> */
+                </div> */ 
+                /* /* <ThemeToggle/> */
                 /* <div> */
-            /* </div> */
+            /* </div> */ 
            
         );
         

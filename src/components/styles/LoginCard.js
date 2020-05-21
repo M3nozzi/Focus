@@ -36,7 +36,7 @@ class LoginCard extends Component {
                                        
                     <Carousel autoplay >
                         <div>
-                            <h2 className="subTitle">Organize your<br/>Study videos</h2>
+                            <h2 className="subTitle">Add and watch your<br/>study videos</h2>
                            <img src={learnOnlineImg} alt="girl studying online" />
                         </div>
                         <div>
@@ -57,7 +57,7 @@ class LoginCard extends Component {
                 </div>
                 
         <CardFieldset>
-            <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account</Link></CardLink>
+            <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account.</Link></CardLink>
           </CardFieldset>
                     </CardBody>
                     </CardWrapper>   

@@ -80,33 +80,35 @@ class Navbar extends Component {
       
           <NavigationItem>
         
-          <Typography style={{fontWeight: 700}} variant="h6" color="inherit">
-              FOCUS
-               </Typography>
+            <Typography style={{fontWeight: 700}} variant="h6" color="inherit">
+                FOCUS
+            </Typography>
              
           
-                <LinkNav><Link to="/main">
+            <LinkNav><Link to="/main">
                     <IconButton aria-label="Home" style={{marginTop: 0, marginLeft: 10, padding: 0}}>
                       <HomeIcon />
                     </IconButton>
-                </Link></LinkNav>
-            </NavigationItem>
+                    </Link>
+            </LinkNav>
 
-            <NavigationItem>
+          </NavigationItem>
+
+          <NavigationItem>
             <div>
             <ThemeToggle/>
             </div>
-            </NavigationItem>
-                  <NavigationItem>
-                  <Link to={"/profile/" + this.state.loggedInUser._id}>
-                   {/* <Button>My Profile</Button> */}
+          </NavigationItem>
+
+          <NavigationItem>
+              <Link to={"/profile/" + this.state.loggedInUser._id}>
                      <Avatar src={this.state.loggedInUser.path} />
-                 </Link>
+              </Link>
             
-                   <Link to='/'>
-                           <Button style={{color: "#FFF", fontWeight: 600}} onClick={() => this.logoutUser()}>Logout</Button>
-                   </Link>
-                   </NavigationItem>
+              <Link to='/'>
+                    <Button style={{color: "#FFF", fontWeight: 600}} onClick={() => this.logoutUser()}>Logout</Button>
+              </Link>
+          </NavigationItem>
                
               
        
@@ -121,14 +123,14 @@ class Navbar extends Component {
               <Typography variant="h6" color="inherit">
                 FOCUS
               </Typography>
-              </NavigationItem>
+          </NavigationItem>
 
-              <NavigationItem>
+          <NavigationItem>
               <LinkNav>
                 <Link style={{paddingLeft: "500px"}} to='/login' style={{color: "#FFF", textDecoration: 'none' }} variant="h6">Login</Link>
-            </LinkNav>
+              </LinkNav>
             
-            </NavigationItem>
+          </NavigationItem>
          
           </Wrapper>
       )
@@ -138,17 +140,3 @@ class Navbar extends Component {
 }
 
 export default Navbar;
-
-{/* <nav className="nav-style">
-          <ul>
-             <li>Welcome, {this.state.loggedInUser.name}</li>
-             <li>
-               <Link to='/profile' style={{ textDecoration: 'none' }}>PROFILE</Link>
-             </li>
-             <li>
-               <Link to='/'>
-                     <button onClick={() => this.logoutUser()}>Logout</button>
-               </Link>
-             </li>
-           </ul>
-         </nav> */}
