@@ -6,6 +6,12 @@ If you would like to know more about this project click on this [link](https://s
 * It's a collaborative platform to keep your focus on studies without distractions. So you can watch videos with your study contents, without being distracted by other types of videos. You can also create a playlist and others users can enjoy it as well.
 <img src="https://res.cloudinary.com/menozzi/image/upload/v1590155791/focus/desktop_yzmige.png" width="400">
 
+## Next Features
+- [ ] Follow contents
+- [ ] Community interactions
+- [ ] Rules in this community
+- [ ]  Upload videos by the user or from anothers api
+
 ## Built With
 This project use:
 * JavaScript
@@ -15,7 +21,6 @@ This project use:
 * React
 * CSS
 * HTML
-
 
 ## [Server](https://github.com/M3nozzi/Focus-server)
 
