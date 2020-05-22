@@ -106,7 +106,7 @@ class App extends Component {
               /> */}
            {/* <ProtectedRoute exact path='/' user={this.state.loggedInUser}
                 getUser={this.getTheUser}  component={Home} /> */}
-          <Route component={NotFound} />
+          {/* <Route component={NotFound} /> */}
          </Switch>
          <Footer />
        </div>
@@ -152,7 +152,7 @@ class App extends Component {
                user={this.state.loggedInUser}
                component={ContentFollowed}
              />
-                   <Route component={NotFound} />
+                   {/* <Route component={NotFound} /> */}
            </Switch>
            <Footer />
          </div>
