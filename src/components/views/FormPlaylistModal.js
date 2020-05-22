@@ -43,7 +43,7 @@ class FormPlaylistModal extends  Component{
         const name = this.state.name;
         const contentId = this.props.theContent._id
        
-        axios.post('http://localhost:5000/api/playlist',
+        axios.post(`${process.env.REACT_APP_API_URL}/playlist`,
         
             { playlistUrl, name, contentId },
             { withCredentials: true }

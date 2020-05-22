@@ -37,7 +37,7 @@ class WatchX extends Component {
         const lookingForPLaylist = '/videos/' + playlistId;
 
         axios
-            .get(`http://localhost:5000/api` + lookingForPLaylist )
+            .get(`${process.env.REACT_APP_API_URL}` + lookingForPLaylist )
             .then(response => {
                
                 this.setState({

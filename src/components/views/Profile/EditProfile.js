@@ -73,7 +73,7 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
       }
      
 
-      axios.put(`http://localhost:5000/api/profile/${values.id}`,
+      axios.put(`${process.env.REACT_APP_API_URL}/profile/${values.id}`,
         {
            name:values.name,
            password: values.password,
@@ -94,7 +94,7 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
       uploadData.append('path', event.target.files[0]);
       
       axios
-        .post("http://localhost:5000/api/upload", uploadData)
+        .post(`${process.env.REACT_APP_API_URL}/upload`, uploadData)
         
         .then(response => { 
         

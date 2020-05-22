@@ -32,7 +32,7 @@ class ContentFollowed extends Component {
     getContentPlaylist() {
         
         const { id } = this.props.match.params;
-        axios.get(`http://localhost:5000/api/contents/` + id, {
+        axios.get(`${process.env.REACT_APP_API_URL}/contents/` + id, {
             withCredentials:true,
             })
             .then(response => {

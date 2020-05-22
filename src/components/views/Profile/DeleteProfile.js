@@ -30,7 +30,7 @@ class DeleteProfile extends Component {
     deleteProfile() {
         
         axios
-          .get("http://localhost:5000/api/profile-delete/" + this.props.userId, {
+          .get(`${process.env.REACT_APP_API_URL}/profile-delete/` + this.props.userId, {
             withCredentials: true,
           })
             .then(() => 

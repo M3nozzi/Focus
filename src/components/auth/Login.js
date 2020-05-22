@@ -135,7 +135,7 @@ class Login extends Component{
 
             <CardOptions>
               <CardOptionsItem>
-                 <a className='socialLogin' href="http://localhost:5000/api/auth/google"><img className="socialLogin" src={googleIcon} alt="google" /></a>
+                  <a className='socialLogin' href={`${process.env.REACT_APP_API_URL}/auth/google`}><img className="socialLogin" src={googleIcon} alt="google" /></a>
               </CardOptionsItem>
             </CardOptions>
           </CardFieldset>
