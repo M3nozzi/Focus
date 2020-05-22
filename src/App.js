@@ -30,21 +30,21 @@ class App extends Component {
 
 
   fetchUser() {
-    console.log("inside fetchUser", this.state.loggedInUser);
+
 
     if (this.state.loggedInUser === null) {
      
       this.service
         .loggedin()
         .then((response) => {
-          console.log("User Logado:", response);
+         
 
           this.setState({
             loggedInUser: response,
           });
         })
         .catch((err) => {
-          console.log("ERROR inside fetchUser:", err);
+          
 
           this.setState({
             loggedInUser: false,
@@ -56,7 +56,7 @@ class App extends Component {
 
   getTheUser(userObj) {
     
-    console.log("getTheUser func no Appjs:", userObj);
+
     
     this.setState({
       loggedInUser: userObj,

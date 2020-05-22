@@ -47,7 +47,7 @@ class Main extends Component {
     getAllContents()
     {
         axios
-            .get('http://localhost:5000/api/contents')
+            .get(`${process.env.REACT_APP_API_URL}/contents`)
             .then(response => {
                     this.setState({
                     contents: response.data

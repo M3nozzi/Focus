@@ -26,7 +26,7 @@ class FormContentsModal extends  Component{
         event.preventDefault();
         const { name, icon } = this.state;
        
-        axios.post('http://localhost:5000/api/contents',
+        axios.post(`${process.env.REACT_APP_API_URL}/contents`,
         
             { name, icon },
             { withCredentials: true }
@@ -60,7 +60,7 @@ class FormContentsModal extends  Component{
         uploadData.append("icon", event.target.files[0]);
             
         axios
-          .post("http://localhost:5000/api/contents-icon-upload", uploadData)
+          .post(`${process.env.REACT_APP_API_URL}/contents-icon-upload`, uploadData)
           .then((response) =>
             this.setState({
               icon: response.data.secure_url,

@@ -151,7 +151,7 @@ function UploadVideoPage(props) {
 
                     {Thumbnail !== "" &&
                         <div>
-                            <img src={`http://localhost:5000/${Thumbnail}`} alt="haha" />
+                            <img src={`${process.env.REACT_APP_API_URL}/${Thumbnail}`} alt="haha" />
                         </div>
                     }
                 </div>

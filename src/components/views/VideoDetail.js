@@ -31,7 +31,7 @@ if(Video.content){
         <Row>
             <Col lg={18} xs={24}>
         <div className="postPage" style={{ width: '100%', padding: '3rem 4em' }}>
-            <video style={{ width: '100%' }} src={`http://localhost:5000/${Video.filePath}`} controls></video>
+            <video style={{ width: '100%' }} src={`${process.env.REACT_APP_API_URL}/${Video.filePath}`} controls></video>
 
                     <List.Item actions={[<Followers userTo={Video.owner._id} contentFrom={Video.Content._id} userFrom={localStorage.getItem('userId')} />]}>
                 <List.Item.Meta
