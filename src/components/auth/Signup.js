@@ -17,7 +17,7 @@ import {
   CardLink
 } from "./SignupStyle"; 
 import googleIcon from "../../images/error/google.png"
-// import Onboarding from '../ComponentsSignupOk/Onboarding';
+
 
 class Signup extends  Component{
 

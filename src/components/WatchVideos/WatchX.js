@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import WatchVideoDetail from './WatchVideoDetail';
-// import WatchVideoList from './WatchVideoList';
 import axios from 'axios';
-// import StructureCard from './StructureCard';
 import styled from 'styled-components';
 
 const Video = styled.div`
@@ -18,7 +15,7 @@ grid-gap: 1.5rem;
 
 
 const API = process.env.REACT_APP_API_KEY
-const playlistId = "5ec2d1d8da0cc301c35d3208" //"PL_VhV5m_X3BK-j1rqyOG5j7FraqSEIxVw";
+const playlistId = "PLHz_AreHm4dkqe2aR0tQK74m8SFe-aGsY";
 const result = 2; 
 let  finalURL =`https://www.googleapis.com/youtube/v3/playlistItems?key=${API}&playlistId=${playlistId}&part=snippet&maxResults=${result}`
 
@@ -31,7 +28,7 @@ class WatchX extends Component {
             playlist:[],
       
         };
-        // this.clicked = this.clicked.bind(this);
+        
         this.getAllVideos = this.getAllVideos.bind(this);
     }
        
@@ -42,7 +39,7 @@ class WatchX extends Component {
         axios
             .get(`http://localhost:5000/api` + lookingForPLaylist )
             .then(response => {
-                console.log(response);
+               
                 this.setState({
                     playlist: response.data,
                 })
@@ -53,25 +50,13 @@ class WatchX extends Component {
         this.getAllVideos();
     }
 
-    // clicked() {
-    //     fetch(finalURL)
-    //         .then((response) => response.json())
-    //         .then((responseJson) => {
-    //             console.log(responseJson)
-    //             const playlist = responseJson.items.map(obj => "https://www.youtube.com/embed/" + obj.snippet.resourceId.videoId)
-    //             this.setState({ playlist });
-    //             console.log(this.state.playlist)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
+   
   
         render(){
             return (
             
                 <div>
-                   {/* <button onClick={() => this.clicked()}>try</button>  */}
+                 
                {
                         this.state.playlist.map((link, i) => {
                             console.log(link);

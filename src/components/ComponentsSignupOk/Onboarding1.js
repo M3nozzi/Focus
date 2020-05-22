@@ -38,8 +38,7 @@ const Wrapper = styled.div`
             <CardButton  primary={true}
                 onClick={this.continue} >Continue</CardButton>
             </CardWrapper>
-            {/* <Button label="back" primary={false}
-                style={styles.button} onClick={this.back} /> */}
+          
         </React.Fragment>
              
         )

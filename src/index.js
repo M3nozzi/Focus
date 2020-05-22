@@ -5,7 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import 'bulma/css/bulma.css';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Route, Switch } from "react-router-dom";
 import 'antd/dist/antd.css';
 

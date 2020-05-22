@@ -1,9 +1,8 @@
   
 import React, { useState, useEffect } from 'react'
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
-//import Dropzone from 'react-dropzone';
 import axios from 'axios';
-//import { useSelector } from "react-redux";
+
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -107,7 +106,7 @@ function UploadVideoPage(props) {
                     }
                     setFilePath(response.data.filePath)
 
-                    //gerenate thumbnail with this filepath ! 
+                    
 
                     axios.post('/api/video/thumbnail', variable)
                         .then(response => {

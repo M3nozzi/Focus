@@ -28,10 +28,10 @@ class AuthService {
     return this.service.get("/logout").then((response) => response.data);
   }
 
-  googleLogin(){
-    return this.service.get("/auth/google")
-    .then(response => response.data)
-  }
+  // googleLogin(){
+  //   return this.service.get("/auth/google")
+  //   .then(response => response.data)
+  // }
 
   
 

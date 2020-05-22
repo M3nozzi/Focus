@@ -11,8 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import FileUpload from '@material-ui/icons/AddPhotoAlternate';
 import { makeStyles } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
-// import AuthService from '../../auth/auth-service';
-import ModalSuccess from "../../views/ModalSuccess";
+
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -52,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   }))
   
 export default function EditProfile({ getUser, loggedInUser, history }) {
-    console.log("Props do EDIT USER: ", getUser);
+    
     const classes = useStyles();
 
     const [values, setValues] = useState({
@@ -65,21 +64,14 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
     
     const clickSubmit = () => {
 
-      //e.preventDefault();
+    
       
       if(values.password.trim() === "")
       {
         
         return setValues({...values, error: "Cannot be Empty!"})
       }
-      // const userData = new FormData();
-      // console.log(values.name && userData.append('name', values.name));
-      // values.password && userData.append('passoword', values.password);
-      // values.path && userData.append('path', values.path)
-      
-      //console.log("VALUES DO EDIT PROFILE", values);
-      // console.log("USER DATA ONSUBMIT", userData);
-      // console.log("INSIDE SUBMIT VALUES ID: ", values.id);
+     
 
       axios.put(`http://localhost:5000/api/profile/${values.id}`,
         {
@@ -90,7 +82,7 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
         }, {withCredentials:true}, {new:true}
       ).then(response => {
           getUser(response)
-           console.log("response DO PUT", response,);
+         
             getUser(response.data);
           history.push('/profile' + '/' + values.id)
         })
@@ -105,11 +97,10 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
         .post("http://localhost:5000/api/upload", uploadData)
         
         .then(response => { 
-          console.log(response)
-          
+        
           setValues({...values, path:response.data.secure_url});
           
-          console.log("VALUE DOT PATH DEPOIS DA FOTO", values.path);
+         
         })
         .catch(error => console.log(error));
         
@@ -123,11 +114,7 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
       setValues({...values, [name]: value })
     }
 
-    // const handleFile = values
-  
-    //   if (values.redirectToProfile) {
-    //     return (<Redirect to={'/user/' + values.id}/>)
-    //   }
+
       return (
         <Card className={classes.card}>
           <CardContent>
@@ -156,7 +143,7 @@ export default function EditProfile({ getUser, loggedInUser, history }) {
           </CardContent>
           <CardActions>
                   <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
-                  <ModalSuccess/>
+                
           </CardActions>
         </Card>
       )

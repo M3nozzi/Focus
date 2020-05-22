@@ -1,5 +1,5 @@
 import React, {useEffect, useState}  from 'react';
-import { List, Avatar, Typography, Row, Col } from 'antd';
+import { List, Avatar, Row, Col } from 'antd';
 import axios from 'axios';
 import Loading from "../tools/Loading";
 import SideVideo from "./SideVideo";
@@ -16,7 +16,7 @@ function VideoDetail(props) {
         axios.post('/api/video/getVideo', videoVariable)
             .then(response => {
                 if(response.data.success) {
-                    console.log(response.data.video);
+                   
                     setVideo(response.data.video);
                 } 
                 else{

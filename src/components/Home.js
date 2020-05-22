@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { Card, Divider, Icon } from './styles/Card';
 import { Container } from './styles/Containers';
 import LoginCard from './styles/LoginCard';
-// import ReactYoutube from './tools/Youtube';
-import { YoutubeGallery, BoxGrid } from './tools/Youtube';
+// import { YoutubeGallery, BoxGrid } from './tools/Youtube';
 
 
 
@@ -18,7 +17,7 @@ class Home extends Component {
         return (
           <Container>
             <LoginCard />
-            {/* <ReactYoutube videoId="_nBlN9yp9R8" /> */}
+            
           </Container>
         );
     }

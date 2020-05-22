@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import {Card } from 'antd';
+
 
 export function SearchBar({ onSubmit }) {
 
@@ -9,10 +9,7 @@ export function SearchBar({ onSubmit }) {
         setSearchTerm(event.target.value);
     };
     
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     this.props.handleSubmit(this.state.term);
-    // }
+   
 
     const onKeyPress = (event) => {
         if (event.key === 'Enter') {

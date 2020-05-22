@@ -11,7 +11,7 @@ export class Onboarding extends Component {
       
     }
 
-    //proceed to next step
+  
     nextStep = () => {
         const { step } = this.state;
         this.setState({
@@ -19,18 +19,7 @@ export class Onboarding extends Component {
         });
     }
 
-     //go back to prev step
-    //  prevStep = () => {
-    //     const { step } = this.state;
-    //     this.setState({
-    //         step: step - 1
-    //     });
-    //  }
-    
-    // handleChange = input => e => {
-    //     this.setState({[input]: e.target.value})
-    // }
-
+ 
     render() {
         const { step } = this.state;
   
@@ -39,7 +28,7 @@ export class Onboarding extends Component {
                 return (
                     <Onboarding1
                         nextStep={this.nextStep}
-                        // handleChange={this.handleChange}
+                 
                      
                     />
                 )
@@ -47,8 +36,7 @@ export class Onboarding extends Component {
                 return (<Onboarding2
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
-                    // handleChange={this.handleChange}
-                    />)
+                 />)
             
               }
     

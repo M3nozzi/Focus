@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {FormStyleWrapper} from "../../components/FormStyle"; 
 
@@ -57,7 +56,7 @@ class FormPlaylistModal extends  Component{
               
             })
             .catch((error) => {
-              console.log(error);
+            
               this.setState({success: false});
             });   
     }
@@ -87,17 +86,15 @@ class FormPlaylistModal extends  Component{
       this.setState({error: "", success: false});
       let name = event.target.name;
       let url = event.target.value;
-      console.log("Entrada no onChange da url", url);
+      
     
       if (this.state.regexUrl.test(url)) {
-           console.log("Depois do if", url);
+          
        
       let newUrl = url.split("&list=")[1];
-      console.log("PlaylistId depois do split", newUrl);
-      console.log("Evento da url", event.target.name);
-
+    
       this.setState({[name]: newUrl }, () => {
-        console.log(this.state.playlistUrl);
+        
 
       });
     }
@@ -182,14 +179,5 @@ class FormPlaylistModal extends  Component{
 export default FormPlaylistModal;
 
 
-  // /list=(.+)[/&]?/
-    
-    // let regExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
-    // const youtubeOk = (playlist) => {
-        
-    //     let regExp = /^.*(youtu.be\/|list=)([^#\&\?]*).*/
-    //     return (url.match(regExp)) ? url.split("/list=")[1] : false;
-
-    // };
-
+  
     

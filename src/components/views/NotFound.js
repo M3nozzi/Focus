@@ -18,6 +18,6 @@ const Wrapper = styled.div`
     }
 `;
 
-export default () => <><CardWrapper><img src={error404} alt="error404" /><Wrapper> Error 404  <br /> Page not found. <br />  <p> We could not find this page</p> </Wrapper></CardWrapper> </>
+export default () => <><CardWrapper><img src={error404} alt="error404" /><Wrapper>  Page not found <br /> or <br/>session expired <br/> <p>Go <a href="/">back</a></p> </Wrapper></CardWrapper> </>
     
     

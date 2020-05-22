@@ -1,17 +1,11 @@
 import React,  {Component, useState } from 'react';
-// import { Card, Avatar, Input, Row, Col } from 'antd';
-// import { EditOutlined, EllipsisOutlined, SettingOutlined, SearchOutlined } from '@ant-design/icons';
-// import Loading from '../tools/Loading';
 import axios from 'axios';
-// import AddContents from '../Cards/AddContents';
 import Search from './Search';
 import CardBox from './CardBox';
 import styled from 'styled-components';
 import NewContent from './NewContent';
-import AddContent from './AddContent';
 import { Link } from "react-router-dom";
-// import FormContents from '../../components/Content/FormContents';
-import FormContentsModal from "../views/FormContentsModal";
+
 
 
 const gridStyle = {
@@ -55,10 +49,9 @@ class Main extends Component {
         axios
             .get('http://localhost:5000/api/contents')
             .then(response => {
-                console.log("RESPONSE DO GETCONTENTS",response);
-                this.setState({
+                    this.setState({
                     contents: response.data
-                    // contents.map(content => { response.data }) 
+                   
                 });
             })
             .catch(error => console.log(error));
@@ -89,7 +82,6 @@ class Main extends Component {
 
         const { contents, searchState } = this.state;
      
-        console.log("SearchState", this.state.searchState);
         return (
             
             <HomeContentWrapper>
@@ -101,57 +93,10 @@ class Main extends Component {
                             }) 
                     }
                     <NewContent getAllContents={this.getAllContents} />
-                    {/* {
-                        this.state.showForm ? <AddContent showFormCard={this.showFormCard}/>
-                        : "..."
-                    } */}
+                 
                 </Container>
                 </HomeContentWrapper>
-                /* <FormContents getData={this.getAllContents} /> */
-                /* <FormContentsModal getData={this.getAllContents} /> */
-                /* <div style={{ width: "40%", float: "right" }}>
-          
-        </div> */
-            
-            /* <Search style={{ width: 200 }} placeholder="Search" prefix={<SearchOutlined />} /> */
-                
-/*     
-                <button onClick={()=> this.add()} >Add Content</button>
-                         {this.state.render && <AddContents/>}
-                    <Row gutter={{xs:8,sm:16, md:24, lg:32}}>
-                                     
-                    {
-                        this.state.contents.map((contents, idx) => {
-                            console.log(contents);
-                            return (
-                                <Col style={gridStyle} className="gutter-row" span={6}>
-                        <Card key={idx}
-                            style={{ width: 300 }}
-                            cover={        
-                                    contents.banner 
-                                    ? (<img src={contents.banner} alt="banner" />
-                                    ) : (
-                                        <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
-                                    )
-                                }
-
-                            actions={[ <SettingOutlined key="setting" />,<EditOutlined key="edit" />, <EllipsisOutlined key="ellipsis" />]}> 
-                        <Meta
-                            avatar={
-                             contents.owner.path ? ( <Avatar src={contents.owner.path} /> ): (<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />)}
-                            title={contents.name}
-                            description={contents.name}
-                        />
-                                    </Card>
-                                    </Col> 
-                        )
-
-                        })}
-                    
-                               
-                </Row> */
-                
-           
+                 
 
         );//closes return
   } //closes render

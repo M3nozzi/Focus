@@ -25,18 +25,10 @@ class DeleteProfile extends Component {
         this.handleRequestClose = this.handleRequestClose.bind(this);
     }   
     
-    // deleteProfile() {
-    //   this.service.deleteProfile(this.props.match.params._id)
-    //   .then(() => {
-    //     this.setState({ loggedInUser: null });
-    //     this.props.getUser(null);  
-    //     this.props.history.push('/');
-    //   }).
-    //   catch(error => console.log(error));
-    // }
+  
 
     deleteProfile() {
-        console.log("propssss",this.props)
+        
         axios
           .get("http://localhost:5000/api/profile-delete/" + this.props.userId, {
             withCredentials: true,

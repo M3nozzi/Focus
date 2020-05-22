@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-// import queryString from "query-string";
+
 
 const Wrapper = styled.div`
   margin: 2rem auto;
@@ -93,13 +93,8 @@ class Search extends React.Component {
                     value={this.state.search}
                     onChange={this.handleChange} 
                 />
-            </Bar>
-
-            {/* <div>
-                <form className="Search" onSubmit={e => e.preventDefault()}>
-                <input type="text" className="Search-box" placeholder="Filter names" onChange={this.handleChange}/>
-                </form>
-            </div> */}
+        </Bar>
+        
       </Wrapper>
     );
   }

@@ -14,7 +14,7 @@ import Edit from '@material-ui/icons/Edit'
 import Divider from '@material-ui/core/Divider';
 import Onboarding from '../../ComponentsSignupOk/Onboarding';
 import DeleteProfile from './DeleteProfile'
-// import AuthService from '../../auth/auth-service';
+
 
 const classes = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -35,14 +35,14 @@ const classes = makeStyles(theme => ({
   }
 }))
 
-// const classes = useStyles();
+
 
 
 class Profile extends Component {
   
   constructor(props) {
         super(props);
-        console.log("User Profile", props);
+        
         this.state = { 
           _id: this.props.loggedInUser._id,
           name: this.props.loggedInUser.name, 
@@ -80,24 +80,14 @@ class Profile extends Component {
             }
           </ListItem>
           <Divider />
-          {/* <ListItem>
-            <ListItemText secondary={"Joined: " + this.state.createdAt} />
-          </ListItem> */}
+        
         </List>
         <div>
         <Onboarding/>
         </div>
       </Paper>
       
-      /* <>
-        <div>
-          <Avatar size={64} icon={<UserOutlined />} />
-          {this.state.path ? (<img src={this.props.path} alt={this.props.name} />) : (<img src="" alt={this.props.name} />)}
-          <h1>{this.props.name}</h1>
-          <h3>{this.props.username}</h3>
-        
-        </div>
-      </> */
+      
     )
   
   }
@@ -107,31 +97,7 @@ class Profile extends Component {
     
 export default Profile;
 
-  //const auth = new AuthService();
-  //const isLoggedIn = auth.loggedin();
-  //   state = {
-  //   name:"", username:"", path: "", following:""
-  // }
-        //this.handleFileChange=this.handleFileChange.bind(this)
-    //}
-
-    // handleFileChange(event) {
-
-    //     const uploadData = new FormData();
-    
-    //     uploadData.append("imageUrl", event.target.files[0]);
-       
-    
-    //     axios
-    //       .post("http://localhost:5000/api/upload", uploadData)
-    //       .then((response) =>
-    //         this.setState({
-    //           imagePath: response.data.secure_url,
-    //         })
-    //       )
-    //       .catch((error) => console.log(error));
-
-    // }
+  
 
 
 

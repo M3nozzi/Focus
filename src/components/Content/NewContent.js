@@ -30,25 +30,6 @@ const NewContentCard = styled.div`
 const NewContent = (props) => {
 
 
-//   static defaultProps = {
-//     name: 'Bob',
-//     email: 'default@email.com',
-//     pic: 'default.jpg'
-//   }
-
-//   getNewContent = e => {
-//     fetch('https://randomuser.me/api/')
-//       .then(response => response.json())
-//       .then(data => {
-//       let firstName = data.results[0].name.first[0].toUpperCase() + data.results[0].name.first.slice(1);
-//       let lastName = data.results[0].name.last[0].toUpperCase() + data.results[0].name.last.slice(1);
-//       let name = firstName + ' ' + lastName;
-//       let email = data.results[0].email;
-//       let pic = data.results[0].picture.large;
-//       let username = data.results[0].login.username;
-//       this.props.gettingUser({name, email, pic, username});
-//     }); 
-//   }
   
   const [isModalVisible, setIsModalVisible] = useState(false);
   

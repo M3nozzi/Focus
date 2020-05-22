@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {FormVideoStyle} from "./FormVideoStyle"; 
+import {FormStyleWrapper2} from "../../components/FormStyle2"; 
 
 
 class FormContentsModal extends  Component{
@@ -34,7 +34,7 @@ class FormContentsModal extends  Component{
         )
 
             .then(() => {
-                // this.props.getData();
+               
                 this.setState({ 
                     name: "",
                     icon: "", 
@@ -64,7 +64,7 @@ class FormContentsModal extends  Component{
           .then((response) =>
             this.setState({
               icon: response.data.secure_url,
-            //   originalName: response.data.originalName,
+            
             })
           )
           .catch((error) => console.log(error));
@@ -75,7 +75,7 @@ class FormContentsModal extends  Component{
               return (
                   <div>
 
-<FormVideoStyle>
+<FormStyleWrapper2>
                       <h2>Create a new content</h2>
                       <form onSubmit={this.handleFormSubmit}>
                           <div className="field">
@@ -110,7 +110,7 @@ class FormContentsModal extends  Component{
                           <input className="buttonSubmit" type="submit" value="Submit" />
                           
                       </form>
-                      </FormVideoStyle>
+                      </FormStyleWrapper2>
                   </div>
               );
               }

@@ -47,20 +47,6 @@ class AddContent extends React.Component {
   }
 
 
-  getNewContent = e => {
-    fetch('https://randomuser.me/api/')
-      .then(response => response.json())
-      .then(data => {
-      let firstName = data.results[0].name.first[0].toUpperCase() + data.results[0].name.first.slice(1);
-      let lastName = data.results[0].name.last[0].toUpperCase() + data.results[0].name.last.slice(1);
-      let name = firstName + ' ' + lastName;
-      let email = data.results[0].email;
-      let pic = data.results[0].picture.large;
-      let username = data.results[0].login.username;
-      this.props.gettingUser({name, email, pic, username});
-    }); 
-  }
-  
   showAddContentForm() {
     if (this.state.isShowing) {
       return (
@@ -126,19 +112,5 @@ class AddContent extends React.Component {
    }
   }
 
-  // render() {
-  //   return (
-  //     <AddContentCard
-  //       className='NewUserButton'
-  //       onClick={this.showFormCard}>
-  //       <h1 style={{fontSize: '5rem'}}>+</h1>
-  //       <h2>ADD NEW CONTENT</h2>
-  //       <p style={{ color: '#BDBDBD',padding: '10px 0 20px',
-  //           margin: '10px'}}>
-  //       </p>
-  //     </AddContentCard>
-  //   );
-  // }
-// }
 
 export default AddContent;

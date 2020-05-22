@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -71,7 +70,7 @@ class FormContents extends  Component{
           .then((response) =>
             this.setState({
               icon: response.data.secure_url,
-            //   originalName: response.data.originalName,
+         
             })
           )
           .catch((error) => console.log(error));
@@ -108,12 +107,11 @@ class FormContents extends  Component{
                                       name="icon"
                                       onChange={this.handleFileChange}
                                   />
-                                  {/* <span className="file-cta"> */}
-                                  <span className="file-icon">
+                                   <span className="file-icon">
                                       <i className="fas fa-upload"></i>
                                   </span>
                                   <span className="file-label">Choose a file…</span>
-                                  {/* </span>   */}
+                               
                               </div>
                           </div>
 
