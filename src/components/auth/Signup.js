@@ -1,6 +1,23 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import AuthService from './auth-service';
+import { Link } from 'react-router-dom';
+import ReactDOM from "react-dom";
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody,
+  CardIcon,
+  CardFieldset,
+  CardInput,
+  CardOptionsItem,
+  CardOptions,
+  CardOptionsNote,
+  CardButton,
+  CardLink
+} from "./SignupStyle"; 
+import googleIcon from "../../images/error/google.png"
+
 
 class Signup extends  Component{
 
@@ -8,10 +25,9 @@ class Signup extends  Component{
         super(props);
 
         this.state = {
-            username:"",
+            email:"",
             password:"",
-            campus: "",
-            course: "",
+            name: "",
             errorMsgUsername: null,
             errorMsgPassword: null,
         }
@@ -19,34 +35,35 @@ class Signup extends  Component{
         this.service = new AuthService();
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.responseGoogle = this.responseGoogle.bind(this);
+     
 
     }
 
 
     handleFormSubmit(event) {
         event.preventDefault();
-        const username = this.state.username;
+        const username = this.state.email;
         const password = this.state.password;
-        const campus = this.state.campus;
-        const course = this.state.course;
+        const name = this.state.name;
 
         this.service
-          .signup(username, password, campus, course)
+          .signup(username, password, name)
           .then((response) => {
             this.setState({
-              username: "",
+              email: "",
               password: "",
-              campus: "",
-              course: "",
+              name: "",
               errorMsgUsername: null,
               errorMsgPassword: null,
             });
             console.log(response);
             this.props.getUser(response);
-            this.props.history.push("/profile");
+            this.props.history.push(`/profile/${response._id}`);
           })
           .catch((error) => {
-            const { message } = error.response.data;
+            console.log(error)
+            const { message } = error.response.data;  
             message.includes("password")
               ? this.setState({
                   errorMsgPassword: message,
@@ -64,74 +81,101 @@ class Signup extends  Component{
         this.setState({ [name]: value });
       }
 
-    render() {
-        return(
-            <div>
+      responseGoogle(response) {
+        this.service
+          .googleLogin()
+          .then((resp) => console.log("Response Google:", resp))
+          .catch((err) => console.log(err));
+        console.log("response google:", response);
+      }
+     render() {
 
-                <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                    <label className="label">Username</label>
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="username"
-                        value={this.state.username} 
-                        placeholder="e.g Alex Smith" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
+        const { errorMsgUsername, errorMsgPassword } = this.state;
+
+        const inputClassName = "input is-small";
+
+        const classNameUsername = errorMsgUsername
+            ? `${inputClassName} is-danger`
+            : inputClassName;
+        const classNamePassword = errorMsgPassword
+            ? `${inputClassName} is-danger`
+            : inputClassName;
+        
+        return (
+            <div className="App">
+      <CardWrapper>
+        <CardHeader>
+          <CardHeading>Sign in</CardHeading>
+        </CardHeader>
+
+                    <CardBody>
+
+                        <CardFieldset>
+                        <div className="field">
+                    <CardInput  type="text" 
+                        name="email"
+                        value={this.state.email} 
+                        placeholder="E-mail" 
+                        onChange={this.handleChange} required />
+                                
+                        {errorMsgUsername && (
+                        <p className="help is-danger">{this.state.errorMsgUsername}</p>
+                    )}
                 </div>
-
-                <div className="field">
-                    <label className="label">Password</label>
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="password" 
+             </CardFieldset>
+           
+                        
+        
+                        <CardFieldset>
+                        <div className="field">
+            <CardInput type="password" 
                         name="password"
                         value={this.state.password}  
-                        placeholder="*****" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
+                        placeholder="Password" 
+                        onChange={this.handleChange} required />
+         
+                        {errorMsgPassword && (
+                       <p className="help is-danger">{this.state.errorMsgPassword}</p>
+            )}
+        </div>
+         </CardFieldset>
+           
+                            
+          
+                        <CardFieldset>
+                        <div className="field">
+            <CardInput ptype="text" 
+                        name="name"
+                        value={this.state.name}
+                        placeholder="What should we call you?" 
+                                    onChange={this.handleChange} required />
+                      </div> 
+            </CardFieldset>
+              
+                            
+          <CardFieldset>
+            <CardOptionsNote>Or sign up with</CardOptionsNote>
 
-                <div className="field">
-                    <label className="label">Campus</label>
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="campus"
-                        value={this.state.campus}
-                        placeholder="Sao Paulo or Madrid or  Barcelona or Miami or Parisor Berlin or Amsterdam or Mexico or Lisbon" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
+            <CardOptions>
+              <CardOptionsItem>
+            <a className='socialLogin' href="http://localhost:5000/api/auth/google"><img className="socialLogin" src={googleIcon} alt="google" /></a>
+              </CardOptionsItem>
+            </CardOptions>
+          </CardFieldset>
 
-                <div className="field">
-                    <label className="label">Course</label>
-                    <div className="control">
-                    <input 
-                        className="input" 
-                        type="text" 
-                        name="course"
-                        value={this.state.course} 
-                        placeholder="WebDev or UX/UI or Data Analytics" 
-                        onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
-                <input className="button" type="submit" value="Create the Account" />
-            </form>
-            <p>
-                Already have account?
-                <Link to={"/login"}> Login</Link>
-            </p>
-            </div>
-        );
+          <CardFieldset>
+            <CardButton type="button" onClick={this.handleFormSubmit}>Sign Up</CardButton>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink><Link to={"/login"} className="LinkLoginSignup">I already have an account</Link></CardLink>
+          </CardFieldset>
+        </CardBody>
+                </CardWrapper>
+                
+    </div>
+        )
+
     }
 }
 

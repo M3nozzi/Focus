@@ -1,6 +1,20 @@
 import React, { Component } from "react";
 import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
+import {
+  CardWrapper,
+  CardHeader,
+  CardHeading,
+  CardBody,
+  CardFieldset,
+  CardInput,
+  CardOptionsItem,
+  CardOptions,
+  CardOptionsNote,
+  CardButton,
+  CardLink
+} from "./SignupStyle";
+import googleIcon from "../../images/error/google.png"
 
 class Login extends Component{
 
@@ -10,8 +24,7 @@ class Login extends Component{
         this.state = {
             username: "",
             password: "",
-            campus: "",
-            course: "",
+  
             errorMsgUsername: null,
             errorMsgPassword: null,
         };
@@ -39,11 +52,11 @@ class Login extends Component{
         });
 
         this.props.getUser(response);
-        // redirecting to /projects
+       
         if (this.props.location.state) {
           redirectTo = this.props.location.state.from.pathname;
         }
-        this.props.history.push(redirectTo);
+        this.props.history.push(redirectTo + "/" + response._id); 
       })
       .catch((error) => {
         const { message } = error.response.data;
@@ -77,46 +90,68 @@ class Login extends Component{
       : inputClassName;
 
     return (
-      <div className="section">
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="field">
-            <div className="control">
-              <label className="label">Username</label>
 
-              <input
-                className={classNameUsername}
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </div>
-            {errorMsgUsername && (
-              <p className="help is-danger">{this.state.errorMsgUsername}</p>
+      <div className="App">
+      <CardWrapper>
+        <CardHeader>
+          <CardHeading>Login</CardHeading>
+        </CardHeader>
+
+                    <CardBody>
+
+                        <CardFieldset>
+                        <div className="field">
+                    <CardInput   
+                        type="text"
+                        name="username"
+                        placeholder="e-mail"
+                        value={this.state.username}
+                        onChange={this.handleChange} required />
+                                
+                        {errorMsgUsername && (
+                        <p className="help is-danger">{this.state.errorMsgUsername}</p>
+                    )}
+                </div>
+             </CardFieldset>
+             
+        
+                        <CardFieldset>
+                        <div className="field">
+            <CardInput type="password" 
+                        name="password"
+                        value={this.state.password}  
+                        placeholder="Password" 
+                        onChange={this.handleChange} required />
+         
+              {errorMsgPassword && (
+                       <p className="help is-danger">{this.state.errorMsgPassword}</p>
             )}
-          </div>
-          <div className="field">
-            <div className="control">
-              <label className="label">Password</label>
-              <input
-                className={classNamePassword}
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            {errorMsgPassword && (
-              <p className="help is-danger">{this.state.errorMsgPassword}</p>
-            )}
-          </div>
-          <input className="button" type="submit" value="Login" />
-        </form>
-        <p>
-          Don't have an account?
-          <Link to={"/signup"}> Signup</Link>
-        </p>
-      </div>
+        </div>
+         </CardFieldset>
+                    
+                            
+          <CardFieldset>
+            <CardOptionsNote>Or Login with</CardOptionsNote>
+
+            <CardOptions>
+              <CardOptionsItem>
+                 <a className='socialLogin' href="http://localhost:5000/api/auth/google"><img className="socialLogin" src={googleIcon} alt="google" /></a>
+              </CardOptionsItem>
+            </CardOptions>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardButton type="button" onClick={this.handleFormSubmit}>Login</CardButton>
+          </CardFieldset>
+
+          <CardFieldset>
+            <CardLink>Don't have an account? <Link to={"/signup"} className="LinkLoginSignup">Sign up</Link></CardLink>
+          </CardFieldset>
+        </CardBody>
+      </CardWrapper>
+    </div>
+
+ 
     );
   }
 }
