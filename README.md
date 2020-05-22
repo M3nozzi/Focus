@@ -1,5 +1,5 @@
 # Focus
-> Study. Organize. Focus
+> Study. Organize. Focus.
 If you would like to know more about this project click on this [link](https://spotsport.herokuapp.com/).
 
 # About
