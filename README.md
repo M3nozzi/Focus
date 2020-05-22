@@ -10,7 +10,7 @@ If you would like to know more about this project click on this [link](https://s
 - [ ] Follow contents
 - [ ] Community interactions
 - [ ] Rules in this community
-- [ ]  Upload videos by the user or from anothers api
+- [ ]  Upload videos by the user or from another api
 
 ## Built With
 This project use:
