@@ -7,17 +7,16 @@ import { Link } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
-     {
+     
         text-decoration: none;
         color: #707070;
         margin-top:15px;
         font-family: 'Roboto';
         font-weight:700;
-    }
 
-    p {
-        font-weight:400;
-    }
+        p {
+            font-weight:400;
+        }
 `;
 
  class Onboarding2 extends Component {
@@ -31,19 +30,23 @@ const Wrapper = styled.div`
         return (
             <React.Fragment>
             <CardWrapper>
-            <h1>Focus.</h1>
-            <img src={creativity} alt="image" />
-            <Wrapper> Organize your study videos <br /> Study without distractions <br />
-            and focus to achieve your goals!
-            </Wrapper>
+                <h1>Focus.</h1>
+                <img src={creativity} alt='creativity icon' />
+                <Wrapper>
+                    Organize your study videos
+                    <br />
+                    Study without distractions
+                    <br />
+                    and focus to achieve your goals!
+                </Wrapper>
             
-            <Link to={"/main"}><CardButton> OK</CardButton></Link>
+                <Link to={"/main"}><CardButton> OK</CardButton></Link>
             </CardWrapper>
      
         </React.Fragment>
              
         )
-        }
+    }
  }
 export default Onboarding2;
 

@@ -1,22 +1,22 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 
 export const FormStyleInput = styled.input`
-padding: 7px 0;
-width: 100%;
-font-family: inherit;
-font-size: 14px;
-border-top: 0;
-border-right: 0;
-border-bottom: 1.5px solid #ddd;
-border-left: 0;
-transition: border-bottom-color 0.25s ease-in;
+  padding: 7px 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1.5px solid #ddd;
+  border-left: 0;
+  transition: border-bottom-color 0.25s ease-in;
 
-&:focus {
-  border-bottom-color: #00d1b2;
-  outline: 0;
-}
+  &:focus {
+    border-bottom-color: #00d1b2;
+    outline: 0;
+  }
+  
 `;
 
 

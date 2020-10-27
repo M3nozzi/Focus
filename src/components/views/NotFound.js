@@ -5,13 +5,13 @@ import {CardWrapper} from "../auth/SignupStyle";
 
 
 const Wrapper = styled.div`
-     {
+
         text-decoration: none;
         color: #707070;
         margin-top:15px;
         font-family: 'Roboto';
         font-weight:700;
-    }
+    
 
     p {
         font-weight:400;
