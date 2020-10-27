@@ -106,7 +106,8 @@ class Login extends Component{
                         name="username"
                         placeholder="e-mail"
                         value={this.state.username}
-                        onChange={this.handleChange} required />
+                        onChange={this.handleChange} required
+                    />
                                 
                         {errorMsgUsername && (
                         <p className="help is-danger">{this.state.errorMsgUsername}</p>

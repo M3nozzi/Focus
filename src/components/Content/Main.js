@@ -50,8 +50,8 @@ class Main extends Component {
             .get(`${process.env.REACT_APP_API_URL}/contents`)
             .then(response => {
                     this.setState({
-                    contents: response.data
-                   
+                    contents: response.data,
+                    loading: true
                 });
             })
             .catch(error => console.log(error));
@@ -81,14 +81,14 @@ class Main extends Component {
     render() {
 
         const { contents, searchState } = this.state;
-     
+        
         return (
             
             <HomeContentWrapper>
                 <Search position="center" searchForm={this.searchForm}/>
                 <Container>
                     {
-                        contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
+                       this.loading && contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
                             return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon ? contents.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"} owner={contents.owner.name ? contents.owner.name : "by Admin"} /></Link>
                             }) 
                     }
