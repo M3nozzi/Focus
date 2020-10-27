@@ -50,7 +50,7 @@ class Login extends Component{
           errorMsgUsername: null,
           errorMsgPassword: null,
         });
-
+          
         this.props.getUser(response);
        
         if (this.props.location.state) {

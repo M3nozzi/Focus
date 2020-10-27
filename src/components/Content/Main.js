@@ -1,4 +1,4 @@
-import React,  {Component, useState } from 'react';
+import React,  {Component} from 'react';
 import axios from 'axios';
 import Search from './Search';
 import CardBox from './CardBox';
@@ -15,10 +15,9 @@ const gridStyle = {
 
 const HomeContentWrapper = styled.div`
   height: 100%;
-  /* display: flex; */
   box-sizing: border-box;
   flex-direction: column;
-    justify-content: space-between;
+  justify-content: space-between;
 `;
 
 const Container = styled.div`
@@ -49,9 +48,12 @@ class Main extends Component {
         axios
             .get(`${process.env.REACT_APP_API_URL}/contents`)
             .then(response => {
-                    this.setState({
-                    contents: response.data,
-                    loading: true
+                console.log(` response Main --> ${response}`)
+
+                this.setState({
+                contents: response.data,
+                loading: true
+        
                 });
             })
             .catch(error => console.log(error));
@@ -82,25 +84,38 @@ class Main extends Component {
 
         const { contents, searchState } = this.state;
         
+        console.log(` contents Main --> ${contents}`)
         return (
             
             <HomeContentWrapper>
                 <Search position="center" searchForm={this.searchForm}/>
                 <Container>
                     {
-                       this.loading && contents.filter(item => item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
-                            return <Link key={idx}  to={`/contents/${contents._id}`}> <CardBox name={contents.name} icon={contents.icon ? contents.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"} owner={contents.owner.name ? contents.owner.name : "by Admin"} /></Link>
-                            }) 
+                        this.loading && contents.filter(item =>
+                            item.name.toLowerCase().includes(searchState)).map((contents, idx) => {
+                            
+                                return (
+                                    <Link key={idx} to={`/contents/${contents._id}`}>
+                                        <CardBox
+                                            key={contents._id}
+                                            name={contents.name}
+                                            icon={contents.icon ? contents.icon : "https://res.cloudinary.com/menozzi/image/upload/v1589934560/focus/undraw_youtube_tutorial_2gn3_z6dmf6.svg"}
+                                            owner={contents.owner.name ? contents.owner.name : "by Admin"}
+                                        />
+                                    </Link>
+                                ) 
+                                    
+                       }) 
                     }
                     <NewContent getAllContents={this.getAllContents} />
                  
                 </Container>
-                </HomeContentWrapper>
+            </HomeContentWrapper>
                  
 
-        );//closes return
-  } //closes render
-} //closes component
+        );
+  } 
+}
 
 export default Main;
 
